@@ -1,0 +1,41 @@
+# AWS / secrets
+*.pem
+.env
+.env.*
+*.secret
+*.key
+credentials
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+terraform.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# IDE / editor
+.idea/
+.vscode/
+*.code-workspace
+
+# OS / misc
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python / cache
+__pycache__/
+
+# Node / package artifacts
+node_modules/
+
+# IMPORTANT
+# Never commit AWS Access Key, Secret Access Key, .pem, .env,
+# terraform.tfstate, or terraform.tfvars files to this repository.
