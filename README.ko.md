@@ -89,20 +89,6 @@ aws-infra-2week-project/
 └── .gitignore
 ```
 
-## 2주 진행 로드맵
-### 1주차
-- Day 1: 킥오프, 역할 분담, 목표 및 아키텍처 합의
-- Day 2: VPC, Subnet, Route Table, Internet Gateway 구성
-- Day 3: Security Group, IAM Role 정리
-- Day 4: EC2 생성, Docker 설치, Nginx 실행
-- Day 5: ALB 및 Target Group 연결, 1차 end-to-end 테스트
-
-### 2주차
-- Day 6: CloudWatch Logs / Metrics / Alarm 구성
-- Day 7: 장애 시나리오 점검 및 Runbook 작성
-- Day 8: 비용 확인, 삭제 체크리스트 정리, 문서 보완
-- Day 9: Terraform 초안 작성
-- Day 10: 최종 리허설, 회고, 발표 자료 정리
 
 ## 수동 구축 가이드
 `infra/manual-setup/` 폴더에는 실제 콘솔에서 리소스를 만들며 기록할 수 있는 템플릿을 넣었습니다.
