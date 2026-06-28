@@ -50,10 +50,12 @@ Detailed draft:
 ## Team Roles
 | Member | Primary Role | Scope |
 | --- | --- | --- |
-| Seongyeong Kang | Observability / SRE + Network | CloudWatch, alarms, logging, traffic flow, subnet and route understanding |
-| Taewook Kwon | Compute / Platform | EC2, Docker, Nginx, ALB attachment, instance operations |
-| Taewoo Kim | Terraform / IaC | Terraform draft structure, variables, outputs, selected resource codification |
-| Chanhyeok Park | Security + Observability Support | Security groups, IAM review, CloudWatch support, checklist validation |
+| 강세영 | Compute + Network | EC2, ALB, VPC, subnet, route table, traffic flow, network structure documentation |
+| 권태욱 | Observability / Platform / IaC Support / Compute Support | CloudWatch, monitoring notes, platform operation notes, IaC support, compute support |
+| 김태우 | Terraform / IaC | Terraform structure, provider, variables, outputs, selected resource codification |
+| 박찬혁 | Security + SRE Support | Security Group, IAM, secret handling, incident checklist, SRE support |
+
+Role details were updated from the 2026-06-28 kickoff meeting.
 
 ## Project Goals
 - Understand how AWS networking and compute components connect together
@@ -187,4 +189,3 @@ This repository must never include:
 - `terraform.tfvars`
 
 Review `.gitignore` before the first commit and before pushing to GitHub.
-
