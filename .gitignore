@@ -1,6 +1,7 @@
 # AWS / secrets
 *.pem
 .env
+*.env
 .env.*
 *.secret
 *.key
@@ -8,10 +9,14 @@ credentials
 
 # Terraform
 .terraform/
+terraform.tfstate
+terraform.tfstate.*
 *.tfstate
 *.tfstate.*
 terraform.tfvars
+*.tfvars
 terraform.tfvars.json
+*.tfvars.json
 override.tf
 override.tf.json
 *_override.tf

@@ -2,15 +2,17 @@
 
 이 폴더는 아키텍처 다이어그램과 구조 설명을 모으는 곳입니다.
 
-프로젝트의 기본 목표 흐름은 다음과 같습니다.
+프로젝트의 목표 흐름은 다음과 같습니다.
 
 ```text
-User -> ALB -> EC2 -> Docker/Nginx -> CloudWatch
+사용자 -> ALB -> EC2 -> Docker / Nginx -> CloudWatch
 ```
 
 ## 작성할 내용
 
 - 전체 아키텍처 다이어그램
+- 각 구성 요소의 역할
+- 사용자 요청이 이동하는 순서
 - VPC / subnet / route table 구조
 - ALB -> Target Group -> EC2 흐름
 - Security Group 연결 관계
@@ -26,6 +28,6 @@ User -> ALB -> EC2 -> Docker/Nginx -> CloudWatch
 
 ## Notes
 
-- AWS Access Key, Secret Key, `.pem` 파일, `.env` 파일, `terraform.tfstate` 파일은 절대 커밋하지 않습니다.
+- AWS Access Key, Secret Key, `.pem`, `.env`, `terraform.tfstate`, `.terraform/`은 절대 커밋하지 않습니다.
 - 비용이 발생할 수 있는 리소스는 실습 후 반드시 삭제합니다.
 - 다이어그램은 예쁘게 그리는 것보다 흐름을 설명할 수 있는 것이 우선입니다.

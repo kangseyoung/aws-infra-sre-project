@@ -27,6 +27,7 @@ templates/study-log-template.md
 
 ## 작성할 내용
 
+- 담당 파트
 - 오늘 공부한 개념
 - 내가 이해한 내용
 - GPT에게 물어본 질문
@@ -39,13 +40,15 @@ templates/study-log-template.md
 ## Notes
 
 - 민감한 정보는 절대 올리지 않습니다.
-- AWS Access Key, Secret Key, `.pem` 파일, `.env` 파일, `terraform.tfstate` 파일은 절대 커밋하지 않습니다.
+- AWS Access Key, Secret Key, `.pem`, `.env`, `terraform.tfstate`, `.terraform/`은 절대 커밋하지 않습니다.
 - 비용이 발생할 수 있는 리소스는 실습 후 반드시 삭제합니다.
 - 공부기록은 복붙보다 본인이 이해한 말로 정리하는 것을 우선합니다.
 
 ## Commit Message Examples
 
-- `docs: add 2026-06-29 study log - kangseyoung`
-- `docs: add 2026-06-29 study log - kwon-taeuk`
-- `docs: add 2026-06-29 study log - kim-taewoo`
-- `docs: add 2026-06-29 study log - park-chanhyuk`
+```text
+docs: add 2026-06-29 study log - kangseyoung
+docs: add 2026-06-29 study log - kwon-taeuk
+docs: add 2026-06-29 study log - kim-taewoo
+docs: add 2026-06-29 study log - park-chanhyuk
+```

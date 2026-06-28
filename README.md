@@ -1,191 +1,173 @@
 # AWS Infra 2-Week Project
 
+초보자 4명이 2주 동안 진행하는 AWS 인프라 프로젝트입니다.
+
+이 프로젝트의 목표는 단순히 웹페이지를 띄우는 것이 아니라, AWS 위에서 네트워크, 서버, 보안, 모니터링, 장애 대응 흐름을 직접 구축하고 이해하는 것입니다.
+
 ## Project Overview
-This repository is a beginner-friendly GitHub scaffold for a 2-week AWS infrastructure project.
-The project focuses on designing, building, documenting, and operating a production-like AWS environment rather than building backend or frontend application features.
 
-The baseline user flow is:
+이번 프로젝트에서는 AWS 핵심 인프라 구성 요소를 직접 만들고, 각 요소가 어떻게 연결되는지 기록합니다.
 
-`User -> Application Load Balancer -> EC2 -> Docker + Nginx -> CloudWatch`
+중요하게 보는 것은 다음과 같습니다.
 
-## Background
-This project is designed for a team of 4 to 5 beginners who want hands-on experience with AWS core infrastructure components.
-Instead of starting with full Infrastructure as Code on day one, the team first builds key resources manually in AWS, records decisions and steps, and then converts selected parts into Terraform drafts.
+- 네트워크 흐름 이해
+- 서버와 트래픽 처리 구조 이해
+- 보안 설정의 이유 이해
+- CloudWatch 기반 모니터링 이해
+- 장애 상황에서 어디를 확인해야 하는지 정리
+- 매일 공부한 내용과 헷갈린 내용을 GitHub에 남기기
 
-## Architecture
-Target architecture scope:
+## Target Architecture
 
-- VPC with public and private subnet design
-- Route tables and Internet Gateway
-- NAT Gateway as an optional cost-sensitive choice
-- EC2 instance for web serving
-- Docker container runtime on EC2
-- Nginx static web server
-- Application Load Balancer and Target Group
-- Security Groups and IAM Role
-- CloudWatch Logs, Metrics, and Alarms
+```text
+사용자 -> ALB -> EC2 -> Docker / Nginx -> CloudWatch
+```
 
-Detailed draft:
-- [docs/architecture.md](/D:/2026/sre/aws-infra-2week-project/docs/architecture.md)
-- [docs/architecture.ko.md](/D:/2026/sre/aws-infra-2week-project/docs/architecture.ko.md)
+각 요소의 역할은 다음과 같습니다.
 
-## Tech Stack
-- AWS VPC
-- Public Subnet / Private Subnet
-- Route Table
-- Internet Gateway
-- NAT Gateway (optional)
-- EC2
-- Docker
-- Nginx
-- Application Load Balancer
-- Target Group
-- Security Group
-- IAM / IAM Role
-- CloudWatch Logs
-- CloudWatch Metrics
-- CloudWatch Alarm
-- Terraform (optional / partial)
+| Component | Role |
+| --- | --- |
+| 사용자 | 브라우저에서 서비스에 접속하는 사람 |
+| ALB | 사용자 요청을 받아 EC2로 전달하는 Load Balancer |
+| EC2 | 실제 서버가 실행되는 AWS 가상 서버 |
+| Docker / Nginx | EC2 안에서 웹 서버를 실행하는 구성 |
+| CloudWatch | 서버 상태, 로그, 지표를 확인하는 AWS 모니터링 서비스 |
 
 ## Team Roles
-| Member | Primary Role | Scope |
-| --- | --- | --- |
-| 강세영 | Compute + Network | EC2, ALB, VPC, subnet, route table, traffic flow, network structure documentation |
-| 권태욱 | Observability / Platform / IaC Support / Compute Support | CloudWatch, monitoring notes, platform operation notes, IaC support, compute support |
-| 김태우 | Terraform / IaC | Terraform structure, provider, variables, outputs, selected resource codification |
-| 박찬혁 | Security + SRE Support | Security Group, IAM, secret handling, incident checklist, SRE support |
 
-Role details were updated from the 2026-06-28 kickoff meeting.
+| Member | Role |
+| --- | --- |
+| 강세영 | Compute + Network |
+| 권태욱 | Observability / Platform / IaC 보조 / Compute 보조 |
+| 김태우 | Terraform / IaC |
+| 박찬혁 | Security + SRE 보조 |
 
-## Project Goals
-- Understand how AWS networking and compute components connect together
-- Build a simple but realistic traffic path from user request to web server
-- Practice documenting manual infrastructure setup decisions
-- Learn basic observability, alerting, and incident response workflows
-- Prepare a small Terraform baseline after manual validation
-- Finish with a repository that can be presented as an infrastructure portfolio artifact
+역할은 2026-06-28 kickoff 회의 기준입니다.
 
 ## Repository Structure
+
 ```text
 aws-infra-2week-project/
 ├── README.md
-├── README.ko.md
 ├── docs/
-├── diagrams/
+│   ├── README.md
+│   ├── meeting-notes/
+│   ├── study-log/
+│   ├── must-optional/
+│   ├── runbook/
+│   └── architecture/
+├── templates/
 ├── infra/
-│   ├── terraform/
-│   └── manual-setup/
 ├── app/
-├── runbook/
+├── diagrams/
 ├── scripts/
 └── .gitignore
 ```
 
-## 2-Week Roadmap
-### Week 1
-- Day 1: Kickoff, role assignment, architecture discussion
-- Day 2: VPC, subnet, route table, Internet Gateway setup
-- Day 3: Security group and IAM role setup
-- Day 4: EC2 provisioning, Docker installation, Nginx container run
-- Day 5: ALB and Target Group integration, first end-to-end test
+주요 문서 위치:
 
-### Week 2
-- Day 6: CloudWatch logs, metrics, alarm setup
-- Day 7: Failure scenario testing and runbook drafting
-- Day 8: Cost review, cleanup planning, documentation refinement
-- Day 9: Terraform draft for selected resources
-- Day 10: Final review, retrospective, presentation material cleanup
+- `docs/`: 프로젝트 문서 전체 안내
+- `docs/study-log/`: 개인별 매일 공부기록
+- `docs/must-optional/`: 담당 파트별 Must / Optional 정리
+- `docs/runbook/`: 장애 대응 문서
+- `docs/architecture/`: 아키텍처 다이어그램과 구조 설명
+- `templates/`: 반복해서 사용할 문서 템플릿
 
-## Manual Setup Guide
-Manual setup templates are under [infra/manual-setup](/D:/2026/sre/aws-infra-2week-project/infra/manual-setup).
+## Daily Study Log Rule
 
-Recommended order:
-1. VPC and subnet setup
-2. Security setup
-3. EC2 setup
-4. ALB setup
-5. CloudWatch setup
+각자 매일 공부기록을 올립니다.
 
-Each document is meant to capture:
-- What was created
-- Why the setting was chosen
-- Screenshot or console evidence
-- Problems encountered
-- Follow-up IaC candidates
+경로 예시:
 
-## Terraform Plan
-Terraform is intentionally partial in this project.
-The team should not attempt to fully automate everything before understanding the AWS console flow.
+```text
+docs/study-log/kangseyoung/2026-06-29.md
+```
 
-Recommended Terraform approach:
-- Start with provider, variables, and tagging standards
-- Codify VPC, subnet, and security group basics first
-- Add EC2 and ALB resources later if the manual setup is stable
-- Keep state files local or in a secure remote backend later
+공부기록은 완벽한 정리본이 아니어도 됩니다. 아래 내용을 남기는 것이 목적입니다.
 
-Terraform draft files:
-- [infra/terraform/provider.tf](/D:/2026/sre/aws-infra-2week-project/infra/terraform/provider.tf)
-- [infra/terraform/main.tf](/D:/2026/sre/aws-infra-2week-project/infra/terraform/main.tf)
-- [infra/terraform/variables.tf](/D:/2026/sre/aws-infra-2week-project/infra/terraform/variables.tf)
-- [infra/terraform/outputs.tf](/D:/2026/sre/aws-infra-2week-project/infra/terraform/outputs.tf)
+- 오늘 공부한 개념
+- GPT에게 물어본 질문
+- 내가 이해한 내용
+- 헷갈리는 부분
+- 내일 할 일
+- 참고한 자료
 
-## Observability / SRE
-Minimum observability targets:
-- ALB health status
-- EC2 instance health
-- Nginx container status
-- CPU usage
-- Basic request and error visibility
-- Alarm routing and ownership
+템플릿:
 
-Suggested outputs:
-- CloudWatch dashboard screenshots
-- Alarm threshold notes
-- Incident timeline examples
-- Simple service health checklist
+```text
+templates/study-log-template.md
+```
 
-## Incident Runbook
-Runbooks are stored in [runbook](/D:/2026/sre/aws-infra-2week-project/runbook).
+## Must / Optional Rule
 
-Suggested incident scenarios:
-- ALB health check failure
-- EC2 SSH access failure
-- Nginx container down
-- Unexpected cost increase
+각자 담당 파트 기준으로 Must / Optional 범위를 정리합니다.
 
-## Cost Management
-Because this is a learning project, cost control is part of the deliverable.
+Must:
 
-Cost controls:
-- Prefer minimum-sized EC2 resources where possible
-- Use NAT Gateway only if truly needed
-- Delete unused Elastic IP, ALB, EBS, and test resources
-- Track daily resource inventory during the project
-- Perform final cleanup using the checklist in `runbook/cost-cleanup.md`
+- 2주 안에 반드시 구현하거나 이해해야 하는 범위
+- 최종 아키텍처 완성에 필요한 핵심 요소
+- 포트폴리오에서 설명 가능해야 하는 내용
 
-## Security Notes
-- Never commit AWS Access Key, Secret Access Key, `.pem`, `.env`, `terraform.tfstate`, `terraform.tfvars`, or any secret file.
-- Do not hardcode credentials in shell scripts, Terraform, or application files.
-- Prefer IAM Role attachment over long-term access keys for EC2 access.
-- Restrict inbound ports to the minimum required range.
-- Review security group rules before demo day and before cleanup.
+Optional:
 
-## Retrospective
-At the end of the project, record:
-- What the team understood well
-- Where setup steps were confusing
-- Which resources caused the most operational difficulty
-- What should be automated next
-- Which documentation helped the most
+- 시간이 남으면 도전할 범위
+- 고도화, 자동화, 추가 모니터링, 추가 문서화
+- 실패해도 프로젝트 전체 완성에는 영향이 적은 내용
 
-## Important Secret Handling
-This repository must never include:
+주의할 점:
+
+- 너무 넓게 잡지 않습니다.
+- 2주 안에 가능한 범위로 정리합니다.
+- 포트폴리오에 남길 수 있는 결과물 중심으로 정리합니다.
+- Must / Optional은 처음부터 완벽하지 않아도 됩니다. 공부하면서 계속 수정합니다.
+
+템플릿:
+
+```text
+templates/must-optional-template.md
+```
+
+## Commit Message Convention
+
+커밋 메시지는 너무 복잡하게 쓰지 않고, 어떤 작업인지 바로 알 수 있게 작성합니다.
+
+규칙:
+
+- `docs:` 문서, 공부기록, 회의록 수정
+- `chore:` 폴더 구조, 설정 파일, 템플릿 추가
+- `fix:` 잘못된 링크, 오타, 문서 오류 수정
+- `feat:` 실제 기능 또는 실습 코드 추가
+
+예시:
+
+```text
+docs: add 2026-06-29 study log - kangseyoung
+docs: add 2026-06-29 study log - kim-taewoo
+docs: update compute-network must optional
+docs: update terraform-iac must optional
+docs: add kickoff meeting notes
+chore: add project documentation scaffold
+fix: update broken documentation link
+```
+
+## Push Rule
+
+- 공부기록과 문서는 `main`에 직접 push해도 됩니다.
+- Terraform 코드나 실제 실습 코드는 가능하면 branch를 따고 PR로 올리는 방식을 권장합니다.
+- 초반에는 기록을 남기는 것이 우선이므로 너무 복잡한 Git Flow는 적용하지 않습니다.
+- 충돌이 나면 혼자 억지로 해결하지 말고 팀원에게 공유합니다.
+
+## Security Notice
+
+아래 파일과 정보는 절대 커밋하지 않습니다.
 
 - AWS Access Key
-- AWS Secret Access Key
-- `.pem` private keys
-- `.env` files
+- AWS Secret Key
+- `.pem`
+- `.env`
 - `terraform.tfstate`
-- `terraform.tfvars`
+- `.terraform/`
 
-Review `.gitignore` before the first commit and before pushing to GitHub.
+비용이 발생할 수 있는 AWS 리소스는 실습 후 반드시 삭제합니다.
+
+특히 ALB, NAT Gateway, Elastic IP, EBS volume, 실행 중인 EC2는 실습 후 상태를 확인합니다.
