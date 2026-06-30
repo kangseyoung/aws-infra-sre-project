@@ -1,0 +1,626 @@
+# AWS Certified Solutions Architect Associate 강의 로드맵
+
+<details>
+<summary><strong>섹션 1: 소개 - AWS 공인 솔루션스 아키텍트 어소시에이트 <sub>15분</sub></strong></summary>
+
+* 1. 과정 소개 - AWS 공인 솔루션스 아키텍트 어소시에이트 `(4분)`
+* 2. 반드시 읽어 주세요. 저의 타 강의 과정을 수강하셨던 분이시라면, 이 강의들은 넘어가도 좋습니다. `(3분)`
+* 3. AWS 계정 만들기 `(2분)`
+* 4. AWS 계정 활성화 문제 해결 `(3분)`
+* 5. 중요 메시지 `(1분)`
+* 6. 강사 소개 `(3분)`
+
+</details>
+
+<details>
+<summary><strong>섹션 2: 강의 슬라이드 및 코드 <sub>1분</sub></strong></summary>
+
+* 7. 강의 슬라이드 및 코드 다운로드 `(1분)`
+
+</details>
+
+<details>
+<summary><strong>섹션 3: AWS 시작하기 <sub>15분</sub></strong></summary>
+
+* 8. AWS 클라우드 개요 - 리전 및 AZ `(8분)`
+* 9. [중요 안내] AWS Console UI Update `(1분)`
+* 10. AWS의 콘솔 및 서비스 둘러보기 `(4분)`
+* 11. 강의의 UI 변경 사항 `(2분)`
+
+</details>
+
+<details>
+<summary><strong>섹션 4: IAM 및 AWS CLI <sub>55분</sub></strong></summary>
+
+* 12. IAM 소개: 사용자, 그룹, 정책 `(3분)`
+* 13. IAM 사용자 및 그룹 실습 `(6분)`
+* 14. IAM 정책 `(3분)`
+* 15. IAM 정책 실습 `(8분)`
+* 16. IAM MFA 개요 `(4분)`
+* 17. IAM MFA 실습 `(4분)`
+* 18. AWS 액세스 키, CLI 및 SDK `(4분)`
+* 19. Windows에서 AWS CLI 설정 `(2분)`
+* 20. Mac OS X에서 AWS CLI 설정 `(1분)`
+* 21. Linux에서 AWS CLI 설정 `(2분)`
+* 22. AWS CLI 실습 `(4분)`
+* 23. AWS CloudShell: Region 가용성 `(1분)`
+* 24. AWS 클라우드쉘 `(4분)`
+* 25. AWS 서비스에 대한 IAM Role `(2분)`
+* 26. IAM Role 실습 `(2분)`
+* 27. IAM 보안 도구 `(1분)`
+* 28. IAM 보안 도구 실습 `(2분)`
+* 29. IAM 모범 사례 `(1분)`
+* 30. IAM 요약 `(1분)`
+* 퀴즈 1: IAM & AWS CLI 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 5: EC2 기초 <sub>1시간 47분</sub></strong></summary>
+
+* 31. AWS 예산 설정 `(5분)`
+* 32. EC2 기초 `(5분)`
+* 33. 웹 사이트 실습을 위해 EC2 사용자 데이터로 EC2 인스턴스 생성 `(14분)`
+* 34. EC2 인스턴스 유형 기본 사항 `(6분)`
+* 35. 보안 그룹 및 클래식 포트 개요 `(7분)`
+* 36. 보안 그룹 실습 `(5분)`
+* 37. SSH 개요 `(3분)`
+* 38. Linux 또는 Mac을 사용하여 SSH 실행 방법 `(7분)`
+* 39. Windows를 사용하여 SSH실행 `(6분)`
+* 40. Windows 10을 사용하여 SSH하는 방법 `(5분)`
+* 41. SSH 문제 해결 `(2분)`
+* 42. EC2 인스턴스 커넥트 `(3분)`
+* 43. EC2 인스턴스 Roles 데모 `(4분)`
+* 44. EC2 인스턴스 구매 옵션 `(10분)`
+* 45. IP Address Charges in AWS `(6분)`
+* 46. 스팟 인스턴스 및 스팟 집합 `(10분)`
+* 47. EC2 인스턴스 launch type 실습 `(9분)`
+* 퀴즈 2: EC2 기초 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 6: EC2 - 솔루션스 아키텍트 어소시에이트 레벨 <sub>34분</sub></strong></summary>
+
+* 48. 프라이빗 vs 퍼블릭 vs 탄력적 IP `(5분)`
+* 49. 프라이빗 vs 퍼블릭 vs 탄력적 IP 실습 `(6분)`
+* 50. EC2 배치 그룹 `(6분)`
+* 51. EC2 배치 그룹 - 실습 `(2분)`
+* 52. ENI(탄력적 네트워크 인터페이스) - 개요 `(2분)`
+* 53. ENI(탄력적 네트워크 인터페이스) - 실습 `(5분)`
+* 54. ENI - 추가 읽기 자료 `(1분)`
+* 55. EC2 Hibernate 모드 `(3분)`
+* 56. EC2 Hibernate 모드 - 실습 `(4분)`
+* 퀴즈 3: EC2 SAA 레벨 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 7: EC2 인스턴스 스토리지 <sub>59분</sub></strong></summary>
+
+* 57. EBS 개요 `(5분)`
+* 58. EBS 실습 `(6분)`
+* 59. EBS 스냅샷 개요 `(2분)`
+* 60. EBS 스냅샷 실습 `(4분)`
+* 61. AMI 개요 `(3분)`
+* 62. AMI 실습 `(5분)`
+* 63. EC2 인스턴스 스토어 `(3분)`
+* 64. EBS 볼륨 유형 `(5분)`
+* 65. EBS 다중 연결 `(2분)`
+* 66. EBS 암호화 `(4분)`
+* 67. Amazon EFS `(5분)`
+* 68. Amazon EFS - 실습 `(13분)`
+* 69. EFS 대 EBS `(2분)`
+* 70. EBS 및 EFS - 섹션 정리 `(2분)`
+* 퀴즈 4: EC2 데이터 관리 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 8: 고가용성 및 스케일링성: ELB 및 ASG <sub>1시간 35분</sub></strong></summary>
+
+* 71. 고가용성 및 스케일링성 `(5분)`
+* 72. Elastic Load Balancing (ELB) 개요 `(6분)`
+* 73. Classic Load Balancer (CLB) 공지 `(1분)`
+* 74. Application Load Balancer (ALB) 개요 `(6분)`
+* 75. Application Load Balancer (ALB) 실습 Part1 `(9분)`
+* 76. Application Load Balancer (ALB) - 실습 - Part 2 `(6분)`
+* 77. Network Load Balancer (NLB) 개요 `(3분)`
+* 78. Network Load Balancer (NLB) - 실습 `(6분)`
+* 79. Gateway Load Balancer (GWLB) 개요 `(4분)`
+* 80. Elastic Load Balancer - 고정 세션 (Sticky Sessions) `(6분)`
+* 81. Elastic Load Balancer - 크로스존 로드밸런싱(Cross Zone Load Balancing) `(6분)`
+* 82. Elastic Load Balancer (ELB) - SSL 인증서 `(6분)`
+* 83. Elastic Load Balancer - SSL 인증서 실습 `(2분)`
+* 84. Elastic Load Balancer (ELB) - 연결 드레이닝 `(2분)`
+* 85. Auto Scaling Group (ASG) 개요 `(5분)`
+* 86. Auto Scaling Group (ASG) 실습 `(9분)`
+* 87. Auto Scaling Group (ASG) - 조정 정책 `(4분)`
+* 88. Auto Scaling Group (ASG) - 스케일링 정책 실습 `(9분)`
+* 퀴즈 5: 고가용성 & 확장성 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 9: AWS 기초: RDS + Aurora + ElastiCache <sub>1시간 10분</sub></strong></summary>
+
+* 89. Amazon RDS 개요 `(4분)`
+* 90. RDS 읽기 전용 복제본과 다중 AZ `(7분)`
+* 91. Amazon RDS 실습 `(10분)`
+* 92. RDS Custom for Oracle과 Microsoft SQL Server `(2분)`
+* 93. Amazon Aurora 개요 `(6분)`
+* 94. Amazon Aurora - 실습 `(8분)`
+* 95. Amazon Aurora - 고급개념 `(6분)`
+* 96. RDS & Aurora - 백업과 모니터링 `(6분)`
+* 97. RDS Security `(3분)`
+* 98. RDS Proxy `(5분)`
+* 99. ElastiCache 개요 강의 `(5분)`
+* 100. ElastiCache 실습 `(5분)`
+* 101. 솔루션 설계자를 위한 ElastiCache `(3분)`
+* 102. 친숙한 포트 목록 `(1분)`
+* 퀴즈 6: RDS, Aurora, & ElastiCache 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 10: Route 53 <sub>1시간 22분</sub></strong></summary>
+
+* 103. DNS 란 무엇일까요? `(6분)`
+* 104. Route 53 개요 `(6분)`
+* 105. Route 53 - 도메인 등록 `(3분)`
+* 106. Route 53 - 첫 번째 기록 생성 `(4분)`
+* 107. Route 53 - EC2 설정 `(6분)`
+* 108. Route 53 - TTL `(5분)`
+* 109. Route 53 CNAME vs Alias `(7분)`
+* 110. 라우팅 정책 - 단순 `(4분)`
+* 111. 라우팅 정책 - 가중치 `(5분)`
+* 112. 라우팅 정책 - 대기 시간 `(5분)`
+* 113. Route 53 - 상태 확인 `(5분)`
+* 114. Route 53 - 상태 점검 실습 `(5분)`
+* 115. 라우팅 정책 - 장애 조치 `(4분)`
+* 116. 라우팅 정책 - 지리적 위치 `(4분)`
+* 117. 라우팅 정책 - 지리적 근접성 `(3분)`
+* 118. 라우팅 정책 - IP-based `(2분)`
+* 119. 라우팅 정책 - 다중 값 `(4분)`
+* 120. 타사 도메인 및 Route 53 `(2분)`
+* 121. Route 53 - 섹션 정리 `(1분)`
+* 퀴즈 7: Route 53 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 11: 클래식 솔루션 아키텍처 토론 <sub>44분</sub></strong></summary>
+
+* 122. 솔루션 아키텍처 토론 개요 `(1분)`
+* 123. WhatsTheTime.com `(11분)`
+* 124. MyClothes.com `(10분)`
+* 125. MyWordPress.com `(5분)`
+* 126. 애플리케이션을 빠르게 인스턴스화 하기 `(3분)`
+* 127. Beanstalk 개요 `(5분)`
+* 128. Beanstalk 실습 `(9분)`
+* 퀴즈 8: 클래식 솔루션 아키텍처 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 12: Amazon S3 소개 <sub>48분</sub></strong></summary>
+
+* 129. S3 개요 `(5분)`
+* 130. S3 실습 `(7분)`
+* 131. S3 보안 및 버킷 정책 `(5분)`
+* 132. S3 보안 및 버킷 정책 실습 `(3분)`
+* 133. S3 웹사이트 `(1분)`
+* 134. S3 웹사이트 실습 `(2분)`
+* 135. S3 버전 관리 `(1분)`
+* 136. S3 버전 관리 실습 `(4분)`
+* 137. S3 복제 `(1분)`
+* 138. S3 복제 노트 `(1분)`
+* 139. S3 복제 실습 `(6분)`
+* 140. S3 스토리지 클래스 `(6분)`
+* 141. S3 스토리지 클래스 실습 `(4분)`
+* 퀴즈 9: Amazon S3 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 13: 고급 Amazon S3 <sub>30분</sub></strong></summary>
+
+* 142. S3 수명 주기 규칙 `(4분)`
+* 143. S3 수명 주기 규칙 - 실습 `(2분)`
+* 144. S3 요청자 지불 `(2분)`
+* 145. S3 이벤트 알림 `(4분)`
+* 146. S3 이벤트 알림 - 실습 `(6분)`
+* 147. S3 퍼포먼스 `(5분)`
+* 148. S3 Batch Operations `(2분)`
+* 149. S3 Storage Lens `(6분)`
+* 퀴즈 10: Amazon S3 고급  퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 14: 아마존 S3 보안 <sub>53분</sub></strong></summary>
+
+* 150. S3 암호화 - 개요 `(8분)`
+* 151. DSSE-KMS 에 대한 안내 `(1분)`
+* 152. S3 암호화 - 실습 `(5분)`
+* 153. S3 기본 암호화 `(1분)`
+* 154. S3 CORS - 개요 `(4분)`
+* 155. S3 CORS 실습 `(7분)`
+* 156. S3 MFA Delete - 개요 `(1분)`
+* 157. S3 MFA Delete 실습 `(6분)`
+* 158. S3 액세스 로그 - 개요 `(1분)`
+* 159. S3 액세스 로그 - 실습 `(4분)`
+* 160. S3 사전 서명된 URL - 개요 `(2분)`
+* 161. S3 사전 서명된 URL - 실습 `(2분)`
+* 162. S3 잠금 정책 및 Glacier 볼트 잠금 `(4분)`
+* 163. S3 액세스 포인트 `(4분)`
+* 164. S3 오브젝트 람다 `(3분)`
+* 퀴즈 11: Amazon S3 Security Quiz
+
+</details>
+
+<details>
+<summary><strong>섹션 15: CloudFront 및 AWS 글로벌 액셀러레이터 <sub>35분</sub></strong></summary>
+
+* 165. CloudFront 개요 `(5분)`
+* 166. CloudFront with S3 - 실습 `(5분)`
+* 167. CloudFront - 어플리케이션 로드 밸런서를 원본으로 쓸 경우 `(2분)`
+* 168. CloudFront - 지리적 제한 설정 `(1분)`
+* 169. CloudFront - Price Classes `(2분)`
+* 170. CloudFront - Cache Invalidation `(3분)`
+* 171. AWS Global Accelerator - 개요 `(6분)`
+* 172. AWS Global Accelerator - 실습 `(11분)`
+* 퀴즈 12: CloudFront & AWS Global Accelerator 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 16: AWS 스토리지 추가 기능 <sub>42분</sub></strong></summary>
+
+* 173. AWS Snow Family 개요 `(4분)`
+* 174. AWS Snow Family 실습 `(3분)`
+* 175. 아키텍처: Snowball 에서 Glacier 까지 `(1분)`
+* 176. Amazon FSx 개요 `(8분)`
+* 177. Amazon FSx - 실습 `(3분)`
+* 178. 스토리지 Gateway 개요 `(10분)`
+* 179. 스토리지 Gateway 실습 `(2분)`
+* 180. AWS 전송 제품군 `(2분)`
+* 181. DataSync - 개요 `(5분)`
+* 182. 모든 AWS 스토리지 옵션 비교 `(4분)`
+* 퀴즈 13: AWS 스토리지 추가 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 17: 디커플링 애플리케이션: SQS, SNS, Kinesis, Active MQ <sub>1시간 20분</sub></strong></summary>
+
+* 183. 메시징 소개 `(3분)`
+* 184. Amazon SQS - 표준 Queues 개요 `(11분)`
+* 185. SQS - 표준 Queues 실습 `(6분)`
+* 186. SQS - 메시지 가시성 시간 초과 `(5분)`
+* 187. SQS - 롱 폴링 `(1분)`
+* 188. SQS - FIFO Queues `(4분)`
+* 189. SQS + 오토 스케일링 그룹 `(5분)`
+* 190. Amazon Simple Notification Service (AWS SNS) `(4분)`
+* 191. SNS 및 SQS - 팬아웃 패턴 `(6분)`
+* 192. SNS - 실습 `(5분)`
+* 193. Amazon Kinesis 개요 `(1분)`
+* 194. Kinesis Data Stream 개요 `(4분)`
+* 195. Kinesis Data Stream 실습 `(10분)`
+* 196. Kinesis Data Firehose 개요 `(4분)`
+* 197. Kinesis Data Firehose 실습 `(8분)`
+* 198. SQS vs SNS vs Kinesis `(3분)`
+* 퀴즈 14: 메시징 및 통합 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 18: AWS의 컨테이너: ECS, Fargate, ECR 및 EKS <sub>55분</sub></strong></summary>
+
+* 199. Docker 소개 `(5분)`
+* 200. Amazon ECS `(7분)`
+* 201. 중요공지: ECS UI 변화에 대하여 `(1분)`
+* 202. ECS 클러스터 생성하기 - 실습 `(5분)`
+* 203. ECS 서비스 생성하기 - 실습 `(10분)`
+* 204. Amazon ECS - 오토 스케일링 `(3분)`
+* 205. Amazon ECS - 솔루션 아키텍트 `(3분)`
+* 206. Amazon ECS - Clean Up - Hands On `(1분)`
+* 207. Amazon ECR `(2분)`
+* 208. EKS 개요 `(4분)`
+* 209. Amazon EKS - 실습 `(7분)`
+* 210. AWS App Runner - 개요 `(2분)`
+* 211. AWS App Runner - 실습 `(4분)`
+* 212. AWS App2Container `(2분)`
+* 퀴즈 15: AWS 컨테이너 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 19: 솔루션 설계자 관점의 서버리스 개요 <sub>1시간 18분</sub></strong></summary>
+
+* 213. 서버리스 섹션 정보 `(1분)`
+* 214. 서버리스 소개 `(2분)`
+* 215. Lambda 개요 `(7분)`
+* 216. Lambda 실습 `(10분)`
+* 217. Lambda 제한 `(2분)`
+* 218. Lambda SnapStart `(2분)`
+* 219. Lambda@엣지 & CloudFront Functions `(6분)`
+* 220. Lambda in VPC `(3분)`
+* 221. RDS - 람다 호출 및 이벤트 알림 `(3분)`
+* 222. Amazon DynamoDB 개요 `(5분)`
+* 223. Amazon DynamoDB 실습 `(5분)`
+* 224. Amazon DynamoDB 심화 기능 `(9분)`
+* 225. API Gateway 개요 `(7분)`
+* 226. API Gateway 기초 실습 `(10분)`
+* 227. Step Functions `(2분)`
+* 228. Amazon Cognito 개요 `(7분)`
+* 퀴즈 16: 서버리스 개괄 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 20: 서버리스 솔루션 아키텍처 토론 <sub>16분</sub></strong></summary>
+
+* 229. 모바일 애플리케이션: MyTodoList `(5분)`
+* 230. 서버리스 웹사이트: MyBlog.com `(6분)`
+* 231. 마이크로서비스 아키텍처 `(4분)`
+* 232. 소프트웨어 업데이트 배포 `(2분)`
+* 퀴즈 17: 서버리스 솔루션 아키텍처 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 21: AWS의 데이터베이스 <sub>27분</sub></strong></summary>
+
+* 233. 올바른 데이터베이스 선택 `(3분)`
+* 234. RDS 요약 `(3분)`
+* 235. Aurora `(3분)`
+* 236. ElastiCache `(2분)`
+* 237. DynamoDB `(4분)`
+* 238. S3 `(3분)`
+* 239. DocumentDB `(1분)`
+* 240. Neptune `(3분)`
+* 241. Keyspaces (for Apache Cassandra) `(1분)`
+* 242. QLDB `(2분)`
+* 243. Timestream `(2분)`
+* 퀴즈 18: AWS 데이터베이스 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 22: 데이터 & 분석 <sub>50분</sub></strong></summary>
+
+* 244. Athena `(5분)`
+* 245. Athena 실습 `(5분)`
+* 246. Redshift `(7분)`
+* 247. 오픈서치(예: ElasticSearch) `(4분)`
+* 248. EMR `(3분)`
+* 249. QuickSight `(4분)`
+* 250. Glue `(5분)`
+* 251. Lake Formation `(4분)`
+* 252. Kinesis 데이터분석 - 개요 `(4분)`
+* 253. Kinesis 데이터분석 - 실습 `(2분)`
+* 254. MSK - Managed Streaming for Apache Kafka `(4분)`
+* 255. 빅 데이터 수집 파이프라인 `(4분)`
+* 퀴즈 19: 데이터&분석 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 23: 머신 러닝 <sub>27분</sub></strong></summary>
+
+* 256. Rekognition 개요 `(4분)`
+* 257. Transcribe 개요 `(3분)`
+* 258. Polly 개요 `(4분)`
+* 259. Translate 개요 `(1분)`
+* 260. Lex + Connect 개요 `(2분)`
+* 261. Comprehend 개요 `(2분)`
+* 262. Comprehend Medical Overview `(2분)`
+* 263. SageMaker 개요 `(3분)`
+* 264. Forecast 개요 `(1분)`
+* 265. Kendra 개요 `(1분)`
+* 266. Personalize 개요 `(2분)`
+* 267. Textract 개요 `(1분)`
+* 268. 머신 러닝 요약 `(1분)`
+* 퀴즈 20: 머신 러닝 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 24: AWS 모니터링 및 감사: CloudWatch, CloudTrail 및 Config <sub>1시간 16분</sub></strong></summary>
+
+* 269. AWS 모니터링 - 섹션 소개 `(1분)`
+* 270. CloudWatch 지표 개요 `(4분)`
+* 271. CloudWatch 로그 개요 `(6분)`
+* 272. CloudWatch 로그 실습 `(5분)`
+* 273. CloudWatch Logs - Live Tail - Hands On `(2분)`
+* 274. CloudWatch 에이전트 및 CloudWatch Logs 에이전트 `(3분)`
+* 275. CloudWatch 경보 개요 `(4분)`
+* 276. CloudWatch 경보 실습 `(5분)`
+* 277. EventBridge 개요 (구. CloudWatch Events) `(7분)`
+* 278. Amazon EventBridge 실습 `(7분)`
+* 279. CloudWatch Insights and Operational Visibility `(6분)`
+* 280. CloudTrail 개요 강의 `(6분)`
+* 281. CloudTrail 실습 `(2분)`
+* 282. CloudTrail - EventBridge 통합 `(2분)`
+* 283. AWS Config 개요 `(5분)`
+* 284. AWS Config - 실습 `(10분)`
+* 285. CloudTrail vs CloudWatch vs Config `(2분)`
+* 퀴즈 21: 모니터링 & 감사 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 25: Identity and Access Management (IAM) - 고급 <sub>48분</sub></strong></summary>
+
+* 286. 조직 개요 `(7분)`
+* 287. 조직 실습 `(10분)`
+* 288. IAM - 고급 `(4분)`
+* 289. IAM - Resource-based Policies vs IAM Roles `(4분)`
+* 290. IAM - 정책 평가 로직 `(7분)`
+* 291. AWS IAM Identity Center `(7분)`
+* 292. AWS 디렉토리 서비스 - 개요 `(6분)`
+* 293. AWS 디렉토리 서비스 - 실습 `(1분)`
+* 294. AWS Control Tower `(3분)`
+* 퀴즈 22: IAM 심화 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 26: AWS 보안 및 암호화: KMS, SSM Parameter Store, CloudHSM, Shield, WAF <sub>1시간 31분</sub></strong></summary>
+
+* 295. AWS 보안 - 섹션 소개 `(1분)`
+* 296. 암호화 101 `(4분)`
+* 297. KMS 개요 `(7분)`
+* 298. CLI를 통한 KMS 실습 `(9분)`
+* 299. KMS - Multi-Region Keys `(6분)`
+* 300. S3 암호화된 복제 `(2분)`
+* 301. 암호화된 AMI 공유 프로세스 `(2분)`
+* 302. SSM 매개변수 저장소 개요 `(4분)`
+* 303. SSM 매개변수 저장소 실습(CLI) `(7분)`
+* 304. SSM 파라미터 스토어 실습(AWS Lambda) `(10분)`
+* 305. AWS Secrets Manager - 개요 `(2분)`
+* 306. AWS Secrets Manager - 실습 `(4분)`
+* 307. AWS Certificate Manager (ACM) `(8분)`
+* 308. 웹 애플리케이션 방화벽 `(3분)`
+* 309. 실드 - DDoS 보호 `(2분)`
+* 310. Firewall Manager `(3분)`
+* 311. WAF 및 실드 - 실습 `(4분)`
+* 312. DDoS Protection Best Practices `(6분)`
+* 313. Amazon GuardDuty `(3분)`
+* 314. Amazon Inspector `(2분)`
+* 315. Amazon Macie `(1분)`
+* 퀴즈 23: AWS 보안 & 암호화 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 27: 네트워킹 - VPC <sub>2시간 38분</sub></strong></summary>
+
+* 316. 섹션 소개 `(1분)`
+* 317. CIDR, 비공개 및 공개 IP `(7분)`
+* 318. 기본 VPC 개요 `(5분)`
+* 319. VPC 개요 `(1분)`
+* 320. VPC 실습 `(2분)`
+* 321. 서브넷 개요 `(2분)`
+* 322. 서브넷 실습 `(4분)`
+* 323. 인터넷 Gateway 및 라우팅 테이블 `(1분)`
+* 324. 인터넷 Gateway 및 라우팅 테이블 실습 `(7분)`
+* 325. Bastion 호스트 `(3분)`
+* 326. Bastion 호스트 실습 `(5분)`
+* 327. NAT 인스턴스 `(4분)`
+* 328. NAT 인스턴스 실습 `(6분)`
+* 329. NAT Gateway `(4분)`
+* 330. NAT Gateway 실습 `(3분)`
+* 331. NACL 및 보안 그룹 `(11분)`
+* 332. NACL 및 보안 그룹 실습 `(7분)`
+* 333. VPC 피어링 `(2분)`
+* 334. VPC 피어링 실습 `(6분)`
+* 335. VPC Endpoints `(6분)`
+* 336. VPC Endpoint 실습 `(7분)`
+* 337. VPC Flow 로그 `(4분)`
+* 338. VPC Flow 기록 실습 + Athena `(10분)`
+* 339. 사이트 간 VPN, 가상 사설 Gateway 및 고객 Gateway `(4분)`
+* 340. 사이트 간 VPN, 가상 사설 Gateway 및 고객 Gateway 실습 `(2분)`
+* 341. 다이렉트 커넥트 & 다이렉트 커넥트 게이트웨이 `(7분)`
+* 342. 다이렉트 커넥트 & Site to Site VPN `(1분)`
+* 343. 환승 Gateway `(5분)`
+* 344. VPC 트래픽 미러링 `(2분)`
+* 345. VPC용 IPv6 `(3분)`
+* 346. VPC용 IPv6 - 실습 `(4분)`
+* 347. 이그레스 전용 인터넷 Gateway `(3분)`
+* 348. 이그레스 전용 인터넷 Gateway 실습 `(1분)`
+* 349. 섹션 정리 `(2분)`
+* 350. VPC 섹션 요약 `(5분)`
+* 351. AWS의 네트워킹 비용 `(9분)`
+* 352. AWS 네트워크 파이어월 `(3분)`
+* 퀴즈 24: VPC 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 28: 재해 복구 및 마이그레이션 <sub>44분</sub></strong></summary>
+
+* 353. AWS의 재해 복구 `(12분)`
+* 354. 데이터베이스 마이그레이션 서비스(DMS) `(5분)`
+* 355. 데이터베이스 마이그레이션 서비스(DMS) - 실습 `(6분)`
+* 356. RDS와 Aurora Migrations `(3분)`
+* 357. AWS를 통한 온프레미스 전략 `(3분)`
+* 358. AWS 백업 - 개요 `(3분)`
+* 359. AWS 백업 - 실습 `(4분)`
+* 360. Application Migration Service (MGN) `(3분)`
+* 361. 대규모 데이터 세트를 AWS로 전송 `(3분)`
+* 362. VMware Cloud on AWS `(2분)`
+* 퀴즈 25: 재해 복구 & 이전 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 29: 더 많은 솔루션 아키텍처 <sub>28분</sub></strong></summary>
+
+* 363. AWS의 이벤트 처리 `(6분)`
+* 364. AWS의 캐싱 전략 `(3분)`
+* 365. AWS에서 IP 주소 차단 `(5분)`
+* 366. AWS의 고성능 컴퓨팅(HPC) `(7분)`
+* 367. EC2 인스턴스 고가용성 `(7분)`
+* 퀴즈 26: 추가적인 솔루션 아키텍처 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 30: 기타 서비스 <sub>48분</sub></strong></summary>
+
+* 368. 기타 서비스 - 개요 `(1분)`
+* 369. CloudFormation - 소개 `(4분)`
+* 370. CloudFormation 실습 `(9분)`
+* 371. CloudFormation - 서비스 역할 `(3분)`
+* 372. Amazon SES `(1분)`
+* 373. Amazon Pinpoint `(2분)`
+* 374. SSM Session Manager `(6분)`
+* 375. SSM 기타 서비스 `(5분)`
+* 376. AWS 비용 탐색기 `(2분)`
+* 377. AWS 비용 이상 탐지 `(1분)`
+* 378. AWS Outposts `(3분)`
+* 379. AWS Batch `(3분)`
+* 380. Amazon AppFlow `(1분)`
+* 381. AWS 증폭 `(2분)`
+* 382. Instance Scheduler on AWS `(6분)`
+
+</details>
+
+<details>
+<summary><strong>섹션 31: 백서 및 아키텍처 - AWS 공인 솔루션스 아키텍트 어소시에이트 <sub>15분</sub></strong></summary>
+
+* 383. 백서 섹션 소개 `(1분)`
+* 384. AWS Well-Architected Framework 와 Well-Architected Tool `(6분)`
+* 385. AWS Trusted Advisor 개요 및 실습 `(3분)`
+* 386. 아키텍처의 예 - AWS 공인 솔루션스 아키텍트 어소시에이트 `(4분)`
+* 퀴즈 27: 백서 & 아키텍처 퀴즈
+
+</details>
+
+<details>
+<summary><strong>섹션 32: 시험 준비 + 연습 시험 - AWS Certified SAA <sub>18분</sub></strong></summary>
+
+* 387. 시험 준비 - 섹션 소개 `(1분)`
+* 388. 학습 현황 체크포인트 - AWS 공인 솔루션스 아키텍트 어소시에이트 `(4분)`
+* 389. 시험 팁 - AWS 공인 솔루션스 아키텍트 어소시에이트 `(3분)`
+* 390. 백서 링크 `(1분)`
+* 391. 시험 연습 및 등록 `(4분)`
+* 392. AWS 시험 비용 50% 절약하는 법! `(2분)`
+* 393. AWS 시험시간 추가 30분 확보하기 - 영어가 모국어가 아닌 사람만 해당 `(1분)`
+* 394. 시험은 어떻게 진행되나요? `(2분)`
+* 실전 테스트 1: 실전 모의고사 - AWS 공인 솔루션스 아키텍트 어소시에이트
+
+</details>
+
+<details>
+<summary><strong>섹션 33: 완강을 축하합니다! - AWS Certified Solutions Architect Associate <sub>10분</sub></strong></summary>
+
+* 395. AWS 자격증 과정 소개 `(5분)`
+* 396. 완강을 축하합니다! - AWS Certified Solutions Architect Associate `(1분)`
+* 397. 감사합니다! `(2분)`
+* 398. 보너스 강의 `(3분)`
+* 399. Q&A 게시판 안내 `(1분)`
+
+</details>
