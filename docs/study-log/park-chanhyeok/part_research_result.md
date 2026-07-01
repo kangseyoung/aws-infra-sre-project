@@ -75,3 +75,34 @@
 > 인프라와 네트워크를 담당하시는 분과는 초반 VPC 및 서브넷 설계 단계부터 포트와 배치 규칙을 맞추어야 하므로, 오늘 회의가 끝난 후 바로 싱크를 맞췄으면 좋겠습니다.
 > 
 > 만약 이 필수 작업들이 빠르게 마무리된다면, 포트폴리오 퀄리티를 한 단계 높이기 위해 **'부하 테스트를 통한 Auto Scaling 자동화 체계'**까지 구현해 보는 것을 확장 목표로 가져가겠습니다. 감사합니다."
+
+
+___________________________________________________________
+
+## 🗺️ 프로젝트용 유데미 발췌독 최종 체크리스트
+
+#### 1단계: VPC 대문 뚫고 배스천 호스트 세팅 (Must 1번 관련)
+- [ ] 323. 인터넷 Gateway 및 라우팅 테이블 `(1분)` - 개념 리프레시
+- [ ] 324. 인터넷 Gateway 및 라우팅 테이블 실습 `(7분)` - **[필수]**
+- [ ] 325. Bastion 호스트 `(3분)` - 개념 리프레시
+- [ ] 326. Bastion 호스트 실습 `(5분)` - **[필수]** 우리 팀 IP로 22포트 막는 법 나옴
+
+#### 2단계: ALB 생성 및 HTTPS(ACM 인증서) 연동 (Must 2번 관련)
+- [ ] 74. Application Load Balancer (ALB) 개요 `(6분)` - ALB 보안 구조 이해용
+- [ ] 75. Application Load Balancer (ALB) 실습 Part1 `(9분)` - **[필수]** ALB 생성
+- [ ] 76. Application Load Balancer (ALB) - 실습 - Part 2 `(6분)` - **[필수]** 타겟그룹 연결
+- [ ] 82. Elastic Load Balancer - SSL 인증서 `(6분)` - ACM 인증서 개념
+- [ ] 83. Elastic Load Balancer (ELB) - SSL 인증서 실습 `(2분)` - **[필수]** HTTPS 대문 개방
+
+#### 3단계: CloudWatch 경보 및 알림 연동 (Must 3번 & Optional 2번 관련)
+- [ ] 270. CloudWatch 지표 개요 `(4분)`
+- [ ] 271. CloudWatch 로그 개요 `(6분)`
+- [ ] 274. CloudWatch 에이전트 및 CloudWatch Logs 에이전트 `(3분)` - Optional Nginx 로그 수집용
+- [ ] 275. CloudWatch 경보 개요 `(4분)`
+- [ ] 276. CloudWatch 경보 실습 `(5분)` - **[필수]** CPU 80% 경보 및 SNS 알림 연동
+
+#### 4단계: 트래픽 부하 및 Auto Scaling 검증 (Optional 1번 관련)
+- [ ] 85. Auto Scaling Group (ASG) 개요 `(5분)`
+- [ ] 86. Auto Scaling Group (ASG) 실습 `(9분)` - **[필수]** ASG 기본 생성
+- [ ] 87. Auto Scaling Group (ASG) - 조정 정책 `(4분)`
+- [ ] 88. Auto Scaling Group (ASG) - 스케일링 정책 실습 `(9분)` - **[필수]** 부하 시 Scale-out 세팅
