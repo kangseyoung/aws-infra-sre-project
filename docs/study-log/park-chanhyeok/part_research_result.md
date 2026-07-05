@@ -105,4 +105,4 @@ ___________________________________________________________
 - [ ] 85. Auto Scaling Group (ASG) 개요 `(5분)`
 - [ ] 86. Auto Scaling Group (ASG) 실습 `(9분)` - **[필수]** ASG 기본 생성
 - [ ] 87. Auto Scaling Group (ASG) - 조정 정책 `(4분)`
-- [ ] 88. Auto Scaling Group (ASG) - 스케일링 정책 실습 `(9분)` - **[필수]** 부하 시 Scale-out 세팅
+- [ ] 88. Auto Scaling Group (ASG) - 스케일링 정책 실습 `(9분)` - **[필수]** 부하 시 Scale-out 세팅 
