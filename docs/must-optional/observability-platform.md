@@ -265,88 +265,88 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
 ### Observability Optional
 
 * 알림 규칙 추가
-  CPU 사용률 임계치 초과
-  Memory 사용률 임계치 초과
-  Disk 사용률 임계치 초과
-  ALB 5xx 에러 증가
-  Target Group UnHealthyHostCount 증가
-  서비스 응답 실패
+  * CPU 사용률 임계치 초과
+  * Memory 사용률 임계치 초과
+  * Disk 사용률 임계치 초과
+  * ALB 5xx 에러 증가
+  * Target Group UnHealthyHostCount 증가
+  * 서비스 응답 실패
 * SNS 알림 연동
-  SNS Topic 생성
-  이메일 구독 설정
-  CloudWatch Alarm과 SNS 연결
-  알림 수신 테스트
+  * SNS Topic 생성
+  * 이메일 구독 설정
+  * CloudWatch Alarm과 SNS 연결
+  * 알림 수신 테스트
 * 에러 로그 기반 알림 구성
-  Nginx error log 기반 알림
-  5xx 로그 기반 알림
-  특정 에러 메시지 기반 Metric Filter 구성
+  * Nginx error log 기반 알림
+  * 5xx 로그 기반 알림
+  * 특정 에러 메시지 기반 Metric Filter 구성
 * Log Metric Filter 구성
-  로그에서 특정 패턴 추출
-  에러 발생 횟수를 Metric으로 변환
-  변환된 Metric을 Alarm과 연결
+  * 로그에서 특정 패턴 추출
+  * 에러 발생 횟수를 Metric으로 변환
+  * 변환된 Metric을 Alarm과 연결
 * 대시보드 시각화 개선
-  EC2 지표 위젯 추가
-  ALB 지표 위젯 추가
-  Target Group 상태 위젯 추가
-  로그 확인 링크 정리
-  포트폴리오용 Dashboard 캡처 정리
+  * EC2 지표 위젯 추가
+  * ALB 지표 위젯 추가
+  * Target Group 상태 위젯 추가
+  * 로그 확인 링크 정리
+  * 포트폴리오용 Dashboard 캡처 정리
 * 장애 시나리오를 정해서 테스트
-  EC2 중지
-  Docker 컨테이너 중지
-  Nginx 중지
-  Security Group 80번 포트 차단
-  Health Check Path 오류 설정
-  Target Group에서 EC2 제거
+  * EC2 중지
+  * Docker 컨테이너 중지
+  * Nginx 중지
+  * Security Group 80번 포트 차단
+  * Health Check Path 오류 설정
+  * Target Group에서 EC2 제거
 * 고급 Observability 도구 개념 학습
-  OpenTelemetry
-  AWS X-Ray
-  Prometheus
-  Grafana
+  * OpenTelemetry
+  * AWS X-Ray
+  * Prometheus
+  * Grafana
 * CloudWatch Agent 설정 학습
-  EC2 Memory 지표 수집
-  EC2 Disk 지표 수집
-  Nginx access log / error log 수집
-  Docker log 수집 가능 여부 확인
-  CloudWatch Logs로 로그 전송 설정
+  * EC2 Memory 지표 수집
+  * EC2 Disk 지표 수집
+  * Nginx access log / error log 수집
+  * Docker log 수집 가능 여부 확인
+  * CloudWatch Logs로 로그 전송 설정
 
 ### Platform Optional
 
 * Platform 운영 체크리스트 작성
-  배포 전 확인 항목
-  배포 후 확인 항목
-  장애 발생 시 확인 항목
-  복구 후 확인 항목
+  * 배포 전 확인 항목
+  * 배포 후 확인 항목
+  * 장애 발생 시 확인 항목
+  * 복구 후 확인 항목
 * 배포 실패 시 확인할 항목 정리
-  GitHub Actions 로그
-  SSH 접속 여부
-  Docker build 실패 여부
-  Docker container 실행 여부
-  Nginx 설정 오류 여부
-  ALB Health Check 상태
+  * GitHub Actions 로그
+  * SSH 접속 여부
+  * Docker build 실패 여부
+  * Docker container 실행 여부
+  * Nginx 설정 오류 여부
+  * ALB Health Check 상태
 * CI/CD와 연결된 자동 배포 흐름까지 정리
-  코드 push
-  GitHub Actions 실행
-  EC2 접속
-  Docker image build 또는 pull
-  Container restart
-  ALB Health Check 확인
-  CloudWatch Metric 확인
+  * 코드 push
+  * GitHub Actions 실행
+  * EC2 접속
+  * Docker image build 또는 pull
+  * Container restart
+  * ALB Health Check 확인
+  * CloudWatch Metric 확인
 * Terraform으로 Platform 리소스 관리 학습
-  aws_instance
-  aws_lb
-  aws_lb_target_group
-  aws_lb_listener
-  aws_security_group
-  aws_cloudwatch_dashboard
-  aws_cloudwatch_metric_alarm
-  variable
-  output
+  * aws_instance
+  * aws_lb
+  * aws_lb_target_group
+  * aws_lb_listener
+  * aws_security_group
+  * aws_cloudwatch_dashboard
+  * aws_cloudwatch_metric_alarm
+  * variable
+  * output
 * Runbook 문서화
-  ALB 502 장애 대응 문서
-  ALB 503 장애 대응 문서
-  EC2 접속 불가 대응 문서
-  Nginx 장애 대응 문서
-  CloudWatch Logs 미수집 대응 문서
+  * ALB 502 장애 대응 문서
+  * ALB 503 장애 대응 문서
+  * EC2 접속 불가 대응 문서
+  * Nginx 장애 대응 문서
+  * CloudWatch Logs 미수집 대응 문서
 
 ---
 
