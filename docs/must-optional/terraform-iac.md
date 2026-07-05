@@ -120,8 +120,6 @@ Module, Remote Backend, Auto Scaling, CloudWatch Alarm, GitHub Actions 자동화
 
 ### 협업 방식
 
-### 협업 방식
-
 Terraform은 다른 파트에서 정의한 AWS 리소스와 설정을 코드로 관리하는 역할이므로, 각 파트에서 Must 범위가 확정되거나 변경될 때마다 해당 내용을 취합하여 Terraform 코드에 반영한다.
 
 이를 위해 리소스 취합 양식을 활용하여 리소스 이름, 목적, 연결 대상, CIDR, Security Group 규칙, 필요한 Output 등의 정보를 공유받고, 변경 사항은 Variable과 Output을 통해 일관성 있게 관리한다.
