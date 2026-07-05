@@ -97,76 +97,76 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
 ### Observability Must
 
 * CloudWatch 기본 개념
-  Metric
-  Log
-  Dashboard
-  Alarm
-  Log Group
-  Log Stream
+  * Metric
+  * Log
+  * Dashboard
+  * Alarm
+  * Log Group
+  * Log Stream
 
 * EC2 기본 지표 확인
-  CPUUtilization
-  NetworkIn
-  NetworkOut
-  StatusCheckFailed
+  * CPUUtilization
+  * NetworkIn
+  * NetworkOut
+  * StatusCheckFailed
 
 * ALB 기본 지표 확인
-  RequestCount
-  TargetResponseTime
-  HTTPCode_ELB_4XX_Count
-  HTTPCode_ELB_5XX_Count
-  HTTPCode_Target_4XX_Count
-  HTTPCode_Target_5XX_Count
+  * RequestCount
+  * TargetResponseTime
+  * HTTPCode_ELB_4XX_Count
+  * HTTPCode_ELB_5XX_Count
+  * HTTPCode_Target_4XX_Count
+  * HTTPCode_Target_5XX_Count
 
 * Target Group Health Check 확인
-  HealthyHostCount
-  UnHealthyHostCount
-  Health Check Path
-  Target 상태 확인
-  Target이 Unhealthy가 되는 원인 정리
+  * HealthyHostCount
+  * UnHealthyHostCount
+  * Health Check Path
+  * Target 상태 확인
+  * Target이 Unhealthy가 되는 원인 정리
 
 * 어떤 로그를 확인해야 하는지 정리
-  Nginx access log
-  Nginx error log
-  Docker container log
-  EC2 system log
-  CloudWatch Logs에서 확인 가능한 로그
+  * Nginx access log
+  * Nginx error log
+  * Docker container log
+  * EC2 system log
+  * CloudWatch Logs에서 확인 가능한 로그
 
 * CloudWatch Logs 확인 범위 정리
-  Log Group
-  Log Stream
-  로그가 정상적으로 수집되고 있는지 확인
-  로그가 보이지 않을 때 CloudWatch Agent, 로그 경로, 권한 설정을 확인
+  * Log Group
+  * Log Stream
+  * 로그가 정상적으로 수집되고 있는지 확인
+  * 로그가 보이지 않을 때 CloudWatch Agent, 로그 경로, 권한 설정을 확인
 
 * 기본 대시보드에 들어갈 항목 정리
-  EC2 CPUUtilization
-  EC2 NetworkIn / NetworkOut
-  EC2 StatusCheckFailed
-  ALB RequestCount
-  ALB TargetResponseTime
-  ALB 4xx / 5xx Error
-  Target Group HealthyHostCount
-  Target Group UnHealthyHostCount
+  * EC2 CPUUtilization
+  * EC2 NetworkIn / NetworkOut
+  * EC2 StatusCheckFailed
+  * ALB RequestCount
+  * ALB TargetResponseTime
+  * ALB 4xx / 5xx Error
+  * Target Group HealthyHostCount
+  * Target Group UnHealthyHostCount
 
 * 기본 Alarm 기준 정리
-  EC2 CPUUtilization 80% 초과
-  EC2 StatusCheckFailed 1 이상
-  ALB 5xx Error 증가
-  Target 5xx Error 증가
-  Target Group UnHealthyHostCount 1 이상
-  TargetResponseTime 증가
+  * EC2 CPUUtilization 80% 초과
+  * EC2 StatusCheckFailed 1 이상
+  * ALB 5xx Error 증가
+  * Target 5xx Error 증가
+  * Target Group UnHealthyHostCount 1 이상
+  * TargetResponseTime 증가
 
 * 장애 발생 시 먼저 확인할 지표 정리
-  ALB RequestCount
-  ALB 4xx / 5xx Error
-  TargetResponseTime
-  HealthyHostCount
-  UnHealthyHostCount
-  EC2 CPUUtilization
-  EC2 StatusCheckFailed
-  Nginx access log
-  Nginx error log
-  Docker logs
+  * ALB RequestCount
+  * ALB 4xx / 5xx Error
+  * TargetResponseTime
+  * HealthyHostCount
+  * UnHealthyHostCount
+  * EC2 CPUUtilization
+  * EC2 StatusCheckFailed
+  * Nginx access log
+  * Nginx error log
+  * Docker logs
 
 * 장애 발생 시 확인 순서 문서화
 
@@ -189,10 +189,10 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
 ### Platform Must
 
 * Platform이 전체 아키텍처에서 제공하는 역할 정리
-  사용자가 서비스에 접근하는 경로 제공
-  애플리케이션이 실행되는 환경 제공
-  배포 후 상태 확인 기준 제공
-  장애 발생 시 확인 순서 제공
+  * 사용자가 서비스에 접근하는 경로 제공
+  * 애플리케이션이 실행되는 환경 제공
+  * 배포 후 상태 확인 기준 제공
+  * 장애 발생 시 확인 순서 제공
 
 * 서비스 요청 흐름 이해
 
@@ -208,31 +208,31 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
     ↓
   CloudWatch
 * ALB / Target Group 구조 이해
-  ALB
-  Listener
-  Target Group
-  Health Check
-  Security Group
+  * ALB
+  * Listener
+  * Target Group
+  * Health Check
+  * Security Group
 * 애플리케이션 배포 흐름 이해
-  코드 변경
-  빌드
-  배포
-  EC2에서 실행
-  Docker / Nginx 동작 확인
-  CloudWatch로 모니터링
+  * 코드 변경
+  * 빌드
+  * 배포
+  * EC2에서 실행
+  * Docker / Nginx 동작 확인
+  * CloudWatch로 모니터링
 * EC2 기본 운영 이해
-  EC2 인스턴스 상태 확인
-  Public IP 확인
-  SSH 접속 방법 이해
-  Security Group Inbound Rule 확인
-  Instance Status Check 확인
+  * EC2 인스턴스 상태 확인
+  * Public IP 확인
+  * SSH 접속 방법 이해
+  * Security Group Inbound Rule 확인
+  * Instance Status Check 확인
 * Docker / Nginx 기본 운영 이해
-  Docker Image
-  Docker Container
-  Port Mapping
-  Nginx 실행 상태
-  Nginx access log
-  Nginx error log
+  * Docker Image
+  * Docker Container
+  * Port Mapping
+  * Nginx 실행 상태
+  * Nginx access log
+  * Nginx error log
 
 
 * 배포 후 확인해야 할 기본 항목 정리
