@@ -1,9 +1,16 @@
-FROM nginx:1.27-alpine
+FROM python:3.12-slim
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY index.html /usr/share/nginx/html/index.html
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-EXPOSE 80
+WORKDIR /app
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
+COPY minipep ./minipep
+RUN mkdir -p /app/data
+
+EXPOSE 8000
+
+CMD ["uvicorn", "minipep.main:app", "--host", "0.0.0.0", "--port", "8000"]

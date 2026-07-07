@@ -1,0 +1,11 @@
+services:
+  minipep:
+    build: .
+    container_name: minipep
+    ports:
+      - "80:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - MINIPEP_DB_PATH=/app/data/minipep.db
+    restart: unless-stopped

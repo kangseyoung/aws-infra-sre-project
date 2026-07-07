@@ -1,0 +1,1 @@
+"""MiniPEP demo application package."""
