@@ -180,11 +180,7 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
 8. Docker 컨테이너 실행 상태 확인
 9. Nginx 실행 상태 확인
 10. Nginx access log / error log 확인
-11. CloudWatch Logs 확인
-* Observability가 전체 아키텍처에서 어떤 역할을 하는지 문서화
-  배포된 서비스가 정상적으로 운영되는지 확인
-  장애 발생 시 원인을 추적할 수 있도록 지표와 로그 제공
-  ALB, EC2, Docker, Nginx 상태를 CloudWatch 중심으로 확인
+
 
 ### Platform Must
 
@@ -264,13 +260,11 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
 
 ### Observability Optional
 
-* 알림 규칙 추가
-  CPU 사용률 임계치 초과
-  Memory 사용률 임계치 초과
-  Disk 사용률 임계치 초과
-  ALB 5xx 에러 증가
-  Target Group UnHealthyHostCount 증가
-  서비스 응답 실패
+* 고급 Observability 도구 개념 학습(High Priority)
+  OpenTelemetry
+  AWS X-Ray
+  Prometheus
+  Grafana
 * SNS 알림 연동
   SNS Topic 생성
   이메일 구독 설정
@@ -297,11 +291,7 @@ VM, 컨테이너, 서버리스 등 어떤 방식으로 서비스가 실행되는
   Security Group 80번 포트 차단
   Health Check Path 오류 설정
   Target Group에서 EC2 제거
-* 고급 Observability 도구 개념 학습
-  OpenTelemetry
-  AWS X-Ray
-  Prometheus
-  Grafana
+
 * CloudWatch Agent 설정 학습
   EC2 Memory 지표 수집
   EC2 Disk 지표 수집
