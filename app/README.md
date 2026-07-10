@@ -10,13 +10,19 @@ This first version intentionally does not include authentication, React, RDS, CI
 
 | Item | Value |
 | --- | --- |
+| Service name | MiniPEP |
+| Runtime | Docker container |
+| Framework | FastAPI/Uvicorn |
 | App server | Uvicorn |
-| Container port | `8000` |
-| Host port | `80` |
+| Container Port | `8000` |
+| EC2 Host Port | `80` |
 | Docker mapping | `80:8000` |
-| ALB Target Group port | `80` |
-| Health check path | `/health` |
-| Expected health response | HTTP `200` |
+| ALB Target Group Port | `80` |
+| Health Check Path | `/health` |
+| Expected Health Response | HTTP `200` |
+| Main Page | `/` |
+| Logs | stdout, view with `docker logs` or `docker compose logs` |
+| Persistence | local SQLite under `/app/data` |
 
 ## Endpoints
 
@@ -40,7 +46,7 @@ cd app
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-uvicorn minipep.main:app --host 0.0.0.0 --port 8000
+python -m uvicorn minipep.main:app --host 0.0.0.0 --port 8000
 ```
 
 On Windows PowerShell:
@@ -50,7 +56,7 @@ cd app
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-uvicorn minipep.main:app --host 0.0.0.0 --port 8000
+python -m uvicorn minipep.main:app --host 0.0.0.0 --port 8000
 ```
 
 Open:
@@ -130,6 +136,79 @@ Example body:
 {"status":"ok","service":"minipep"}
 ```
 
+## Verification Results
+
+The following checks have been verified.
+
+### Local FastAPI Run
+
+Command:
+
+```bash
+cd app
+python -m uvicorn minipep.main:app --host 0.0.0.0 --port 8000
+```
+
+Verified results:
+
+* `GET /` returned the MiniPEP dashboard.
+* `GET /health` returned HTTP `200 OK`.
+* `GET /api/equipment` returned equipment data.
+* `GET /api/jobs` returned job data.
+
+### Docker Run
+
+Commands:
+
+```bash
+cd app
+docker build -t minipep:latest .
+docker run -d --name minipep -p 80:8000 -v "$(pwd)/data:/app/data" minipep:latest
+curl -i http://localhost/health
+curl -i http://localhost/api/equipment
+curl -i http://localhost/api/jobs
+docker logs minipep
+docker stop minipep
+docker rm minipep
+```
+
+Windows PowerShell volume syntax:
+
+```powershell
+docker run -d --name minipep -p 80:8000 -v "${PWD}\data:/app/data" minipep:latest
+```
+
+Verified results:
+
+* `http://localhost/health` returned HTTP `200 OK`.
+* `http://localhost/api/equipment` returned equipment data.
+* `http://localhost/api/jobs` returned job data.
+* `docker logs minipep` showed request logs.
+* `docker stop minipep` and `docker rm minipep` worked.
+
+### Docker Compose
+
+Commands:
+
+```bash
+cd app
+docker compose up -d --build
+curl -i http://localhost/health
+curl -i http://localhost/api/equipment
+curl -i http://localhost/api/jobs
+docker compose logs minipep
+docker compose down
+```
+
+Verified results:
+
+* `docker compose up -d --build` succeeded.
+* `http://localhost/health` returned HTTP `200 OK`.
+* `http://localhost/api/equipment` returned equipment data.
+* `http://localhost/api/jobs` returned job data.
+* `docker compose logs minipep` showed request logs.
+* `docker compose down` worked.
+
 ## Logs
 
 MiniPEP logs every request and important create/update/delete actions to stdout.
@@ -186,7 +265,7 @@ Client -> ALB:80 -> Target Group:80 -> EC2 host port 80 -> Docker container port
 SQLite persists under:
 
 ```text
-app/data/minipep.db
+/app/data
 ```
 
-The app creates the database automatically and seeds sample equipment and jobs when the database is empty.
+The app creates the local SQLite database automatically and seeds sample equipment and jobs when the database is empty. Local SQLite database files under `app/data` are ignored by git and must not be committed.
