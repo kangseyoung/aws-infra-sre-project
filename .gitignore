@@ -35,8 +35,24 @@ Thumbs.db
 # Logs
 *.log
 
+# Local app data
+*.db
+*.sqlite
+*.sqlite3
+
 # Python / cache
 __pycache__/
+*.pyc
+.venv/
+venv/
+
+# MiniPEP local SQLite data
+app/data/*.db
+app/data/*.db-*
+app/data/*.sqlite
+app/data/*.sqlite-*
+app/data/*.sqlite3
+app/data/*.sqlite3-*
 
 # Node / package artifacts
 node_modules/
