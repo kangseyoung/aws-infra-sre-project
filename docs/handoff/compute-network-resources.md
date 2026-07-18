@@ -89,25 +89,35 @@
 | --- | --- |
 | Resource Type | Public Subnet |
 | Resource Name | `aws-infra-sre-dev-public-subnet-b` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
+| Resource ID | `subnet-08124f6af7f10cc98` |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
-| Subnet ID | TBD — Day 3 생성 후 기록 |
+| Subnet ID | `subnet-08124f6af7f10cc98` |
 | Availability Zone | `ap-northeast-2c` |
-| Availability Zone ID | TBD — Day 3 생성 후 기록 |
+| Availability Zone ID | `apne2-az3` |
 | CIDR | `10.0.2.0/24` |
-| Public/Private 여부 | Public 예정 |
-| Route Table ID | TBD — Day 3 생성 후 기록 |
-| Internet Gateway ID | Verification Needed — AWS Console 확인 필요 |
+| Public/Private 여부 | Public |
+| Route Table ID | `rtb-0ffacb032b9943e43` |
+| Internet Gateway ID | `igw-06e83aa7e2a1cd757` |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
+| Tag: Name | `aws-infra-sre-dev-public-subnet-b` |
+| Tag: Project | `aws-infra-sre` |
+| Tag: Environment | `dev` |
+| Tag: Owner | `compute-network` |
+| Tag: ManagedBy | `console` |
+| Tag: Purpose | `public-workload` |
+| Must Tag 적용 상태 | 완료 |
 
 검증 결과:
 
-- Public Subnet B는 아직 생성되지 않았다.
+- Public Subnet B가 `10.0.2.0/24`이며 `ap-northeast-2c`에 있음을 확인했다.
+- Public Subnet B가 Public Route Table과 연결되어 있음을 확인했다.
+- 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
+- Must Tag 적용이 완료되었음을 확인했다.
 
 특이사항:
 
-- Day 3 생성 후 Subnet ID와 Route Table Association 상태를 기록한다.
+- 기존 Console 리소스이므로 Terraform으로 중복 생성하면 안 된다.
 
 ## 4. Internet Gateway
 
@@ -148,7 +158,7 @@
 | Resource ID | `rtb-0ffacb032b9943e43` |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
 | Route Table ID | `rtb-0ffacb032b9943e43` |
-| 연결된 리소스 | Public Subnet A |
+| 연결된 리소스 | Public Subnet A, Public Subnet B |
 | Internet Gateway ID | `igw-06e83aa7e2a1cd757` |
 | Terraform 반영 여부 | No |
 | ManagedBy | `console` |
@@ -169,7 +179,7 @@
 
 검증 결과:
 
-- Public Subnet A가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
+- Public Subnet A와 Public Subnet B가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
 - Must Tag 적용이 완료되었음을 확인했다.
 
 특이사항:
@@ -366,6 +376,7 @@
 | --- | --- | --- | --- | --- |
 | VPC | `aws-infra-sre-dev-vpc` | `project-network` | `console` | 완료 |
 | Public Subnet A | `aws-infra-sre-dev-public-subnet-a` | `public-workload` | `console` | 완료 |
+| Public Subnet B | `aws-infra-sre-dev-public-subnet-b` | `public-workload` | `console` | 완료 |
 | Internet Gateway | `aws-infra-sre-dev-igw` | `internet-access` | `console` | 완료 |
 | Public Route Table | `aws-infra-sre-dev-public-rt` | `public-routing` | `console` | 완료 |
 
@@ -373,5 +384,6 @@
 
 - VPC CIDR이 `10.0.0.0/16`임을 확인했다.
 - Public Subnet A가 `10.0.1.0/24`이며 `ap-northeast-2a`에 있음을 확인했다.
-- Public Subnet A가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
-- Public Subnet B와 이후 리소스는 아직 생성되지 않았다.
+- Public Subnet B가 `10.0.2.0/24`이며 `ap-northeast-2c`에 있음을 확인했다.
+- Public Subnet A와 Public Subnet B가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
+- ALB Security Group, EC2 Security Group, EC2, ALB, Target Group은 아직 생성되지 않았다.
