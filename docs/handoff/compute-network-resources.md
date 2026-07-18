@@ -192,31 +192,41 @@
 | --- | --- |
 | Resource Type | Security Group |
 | Resource Name | `aws-infra-sre-dev-alb-sg` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
+| Resource ID | `sg-053e06d50216483fe` |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
-| Security Group ID | TBD — Day 3 생성 후 기록 |
+| Security Group ID | `sg-053e06d50216483fe` |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
+| Tag: Name | `aws-infra-sre-dev-alb-sg` |
+| Tag: Project | `aws-infra-sre` |
+| Tag: Environment | `dev` |
+| Tag: Owner | `compute-network` |
+| Tag: ManagedBy | `console` |
+| Tag: Purpose | `alb-traffic-control` |
+| Must Tag 적용 상태 | 완료 |
 
-예정 Inbound 규칙:
+Inbound 규칙:
 
-| Protocol | Port | Source |
-| --- | --- | --- |
-| TCP | `80` | `0.0.0.0/0` |
+| Protocol | Port | Source | Purpose |
+| --- | --- | --- | --- |
+| TCP | `80` | `0.0.0.0/0` | 인터넷에서 ALB로 들어오는 HTTP 허용 |
 
-예정 Outbound 규칙:
+Outbound 규칙:
 
 | Protocol | Port | Destination |
 | --- | --- | --- |
-| TCP | `80` | EC2 Security Group 방향 통신 허용 예정 |
+| All traffic | All | `0.0.0.0/0` |
 
 검증 결과:
 
-- ALB Security Group은 아직 생성되지 않았다.
+- ALB Security Group `sg-053e06d50216483fe`가 VPC `vpc-04ac5e34907e1e0e9`에 생성되었음을 확인했다.
+- TCP 80 inbound가 `0.0.0.0/0`에서 허용됨을 확인했다.
+- outbound all traffic이 `0.0.0.0/0` 대상으로 허용됨을 확인했다.
+- Must Tag 적용이 완료되었음을 확인했다.
 
 특이사항:
 
-- Day 3 생성 후 실제 Security Group ID와 규칙을 기록한다.
+- ALB는 아직 생성되지 않았다.
 
 ## 7. EC2 Security Group
 
@@ -224,32 +234,44 @@
 | --- | --- |
 | Resource Type | Security Group |
 | Resource Name | `aws-infra-sre-dev-ec2-sg` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
+| Resource ID | `sg-03a67f4bd0610147e` |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
-| Security Group ID | TBD — Day 3 생성 후 기록 |
+| Security Group ID | `sg-03a67f4bd0610147e` |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
+| Tag: Name | `aws-infra-sre-dev-ec2-sg` |
+| Tag: Project | `aws-infra-sre` |
+| Tag: Environment | `dev` |
+| Tag: Owner | `compute-network` |
+| Tag: ManagedBy | `console` |
+| Tag: Purpose | `ec2-traffic-control` |
+| Must Tag 적용 상태 | 완료 |
 
-예정 Inbound 규칙:
+Inbound 규칙:
 
-| Protocol | Port | Source |
-| --- | --- | --- |
-| TCP | `80` | ALB Security Group |
+| Protocol | Port | Source | Purpose |
+| --- | --- | --- | --- |
+| TCP | `80` | ALB Security Group `sg-053e06d50216483fe` | ALB에서 EC2로 전달되는 HTTP만 허용 |
+| TCP | `22` | administrator My IP | 관리자 SSH 접속 |
 
-예정 Outbound 규칙:
+Outbound 규칙:
 
 | Protocol | Port | Destination |
 | --- | --- | --- |
-| TBD | TBD — Day 3 생성 후 기록 | TBD — Day 3 생성 후 기록 |
+| All traffic | All | `0.0.0.0/0` |
 
 검증 결과:
 
-- EC2 Security Group은 아직 생성되지 않았다.
+- EC2 Security Group `sg-03a67f4bd0610147e`가 VPC `vpc-04ac5e34907e1e0e9`에 생성되었음을 확인했다.
+- TCP 80 inbound source가 ALB Security Group `sg-053e06d50216483fe`로 제한됨을 확인했다.
+- TCP 22 inbound source는 생성 당시 현재 관리자 공인 IP로 제한했다.
+- outbound all traffic이 `0.0.0.0/0` 대상으로 허용됨을 확인했다.
+- Must Tag 적용이 완료되었음을 확인했다.
 
 특이사항:
 
 - EC2 Port 80을 `0.0.0.0/0`에 직접 개방하지 않는 것을 기본 원칙으로 한다.
-- SSH 규칙은 아직 확정되지 않았으므로 임의로 추가하지 않는다.
+- 정확한 SSH CIDR 값은 제공되지 않았으므로 `administrator My IP`로 기록한다.
 
 ## 8. EC2
 
@@ -257,23 +279,52 @@
 | --- | --- |
 | Resource Type | EC2 |
 | Resource Name | `aws-infra-sre-dev-app-ec2` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
+| Resource ID | `i-07d3895c10c0706be` |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
-| Subnet ID | TBD — Day 3 생성 후 기록 |
-| Security Group ID | TBD — Day 3 생성 후 기록 |
-| EC2 Public IP | TBD — Day 3 생성 후 기록 |
+| Subnet Name | `aws-infra-sre-dev-public-subnet-a` |
+| Subnet ID | `subnet-0da0e473f97b614fa` |
+| Subnet CIDR | `10.0.1.0/24` |
+| Availability Zone | `ap-northeast-2a` |
+| Private IPv4 | `10.0.1.93` |
+| Current Public IPv4 | `3.39.252.131` |
+| AMI | Amazon Linux 2023 |
+| Architecture | 64-bit x86 |
+| Instance Type | TBD — AWS Console 확인 필요 |
+| Key Pair | `aws-infra-sre-dev-ec2-key` |
+| Security Group Name | `aws-infra-sre-dev-ec2-sg` |
+| Security Group ID | `sg-03a67f4bd0610147e` |
 | Host Port | `80` |
 | Container Port | `8000` |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
+| Tag: Name | `aws-infra-sre-dev-app-ec2` |
+| Tag: Project | `aws-infra-sre` |
+| Tag: Environment | `dev` |
+| Tag: Owner | `compute-network` |
+| Tag: ManagedBy | `console` |
+| Tag: Purpose | `minipep-app` |
+| Must Tag 적용 상태 | 완료 |
 
 검증 결과:
 
-- EC2는 아직 생성되지 않았다.
+- EC2 `i-07d3895c10c0706be`가 Public Subnet A에 생성되었음을 확인했다.
+- Public IPv4 `3.39.252.131`이 할당되었음을 확인했다.
+- Key Pair `aws-infra-sre-dev-ec2-key`를 사용해 SSH 접속에 성공했다.
+- SSH 사용자 `ec2-user`로 접속했다.
+- Docker 설치가 완료되었다.
+- `docker.service` 상태가 enabled 및 active (running)임을 확인했다.
+- `ec2-user`를 docker 그룹에 추가했다.
+- 재접속 후 sudo 없이 `docker ps` 실행에 성공했다.
+- 임시 Nginx 컨테이너 `nginx-test`로 EC2 host port 80 연결을 검증했다.
+- `curl -I http://localhost` 결과 `HTTP/1.1 200 OK`와 `Server: nginx/1.31.3`을 확인했다.
+- 검증 후 `nginx-test` 컨테이너를 삭제했다.
+- 현재 EC2 host port 80은 MiniPEP 컨테이너 배포를 위해 비어 있다.
 
 특이사항:
 
-- Nginx는 초기 연결 테스트용이다.
+- Public IPv4는 Elastic IP가 아니므로 인스턴스 중지 후 재시작 시 변경될 수 있다.
+- Nginx는 임시 포트 연결 테스트용이며 최종 아키텍처가 아니다.
+- 임시 검증 컨테이너는 `nginx:alpine` 이미지, container name `nginx-test`, port mapping `80:80`으로 실행했다.
 - 최종 앱은 MiniPEP FastAPI이며 Docker Container Port `8000`으로 실행한다.
 
 ## 9. ALB
@@ -379,6 +430,9 @@
 | Public Subnet B | `aws-infra-sre-dev-public-subnet-b` | `public-workload` | `console` | 완료 |
 | Internet Gateway | `aws-infra-sre-dev-igw` | `internet-access` | `console` | 완료 |
 | Public Route Table | `aws-infra-sre-dev-public-rt` | `public-routing` | `console` | 완료 |
+| ALB Security Group | `aws-infra-sre-dev-alb-sg` | `alb-traffic-control` | `console` | 완료 |
+| EC2 Security Group | `aws-infra-sre-dev-ec2-sg` | `ec2-traffic-control` | `console` | 완료 |
+| EC2 | `aws-infra-sre-dev-app-ec2` | `minipep-app` | `console` | 완료 |
 
 ## 전체 검증 요약
 
@@ -386,4 +440,7 @@
 - Public Subnet A가 `10.0.1.0/24`이며 `ap-northeast-2a`에 있음을 확인했다.
 - Public Subnet B가 `10.0.2.0/24`이며 `ap-northeast-2c`에 있음을 확인했다.
 - Public Subnet A와 Public Subnet B가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
-- ALB Security Group, EC2 Security Group, EC2, ALB, Target Group은 아직 생성되지 않았다.
+- ALB Security Group `sg-053e06d50216483fe`와 EC2 Security Group `sg-03a67f4bd0610147e`가 생성되었음을 확인했다.
+- EC2 `i-07d3895c10c0706be`가 Public Subnet A에 생성되었고 현재 Public IPv4 `3.39.252.131`이 할당되었음을 확인했다.
+- SSH, Docker, 임시 Nginx host port 80 검증을 완료했다.
+- ALB와 Target Group은 아직 생성되지 않았다.
