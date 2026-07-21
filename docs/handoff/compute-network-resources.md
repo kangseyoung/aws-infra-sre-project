@@ -319,6 +319,12 @@ Outbound 규칙:
 - `curl -I http://localhost` 결과 `HTTP/1.1 200 OK`와 `Server: nginx/1.31.3`을 확인했다.
 - 검증 후 `nginx-test` 컨테이너를 삭제했다.
 - 현재 EC2 host port 80은 MiniPEP 컨테이너 배포를 위해 비어 있다.
+- MiniPEP FastAPI 배포를 완료했다.
+- Docker Compose로 `minipep` 컨테이너를 실행했으며 Host Port `80`에서 Container Port `8000`으로 연결됨을 확인했다.
+- `curl -i http://localhost/health` 결과 `HTTP/1.1 200 OK`와 `{"status":"ok","service":"minipep"}` 응답을 확인했다.
+- `curl http://localhost/api/equipment`로 Equipment API 정상 응답을 확인했다.
+- `curl http://localhost/api/jobs`로 Jobs API 정상 응답을 확인했다.
+- `docker compose logs`로 MiniPEP 애플리케이션 시작 로그와 요청 로그를 확인했다.
 
 특이사항:
 
@@ -326,6 +332,8 @@ Outbound 규칙:
 - Nginx는 임시 포트 연결 테스트용이며 최종 아키텍처가 아니다.
 - 임시 검증 컨테이너는 `nginx:alpine` 이미지, container name `nginx-test`, port mapping `80:80`으로 실행했다.
 - 최종 앱은 MiniPEP FastAPI이며 Docker Container Port `8000`으로 실행한다.
+- Docker Compose 사용을 위해 EC2에 `git`과 Docker Compose CLI 플러그인을 설치했다.
+- `docker compose build` 최초 실행 시 buildx 버전 요구사항으로 실패했으며, Docker Buildx 플러그인을 `v0.25.0`으로 갱신한 뒤 재빌드에 성공했다.
 
 ## 9. ALB
 
