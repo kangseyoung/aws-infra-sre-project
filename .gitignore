@@ -9,19 +9,17 @@ credentials
 
 # Terraform
 .terraform/
-terraform.tfstate
-terraform.tfstate.*
 *.tfstate
 *.tfstate.*
-terraform.tfvars
 *.tfvars
-terraform.tfvars.json
 *.tfvars.json
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
-.terraform.lock.hcl
+.terraform.tfstate.lock.info
+.terraformrc
+terraform.rc
 
 # IDE / editor
 .idea/

@@ -1,22 +1,44 @@
-# Terraform Draft
+# Terraform Infrastructure
 
-This folder contains a starter Terraform draft for the AWS infrastructure project.
+Terraform configuration for the AWS infrastructure project.
 
-## Intent
-- Learn AWS resources manually first
-- Convert selected resources into Terraform after understanding them
-- Keep the first version small and readable
+## Management Strategy
 
-## Suggested First Targets
+The project uses an **Import-first** approach.
+
+Existing AWS resources are kept throughout the project and managed with Terraform by importing them into the Terraform state.
+
+### Must
+
+1. Write Terraform configuration that matches the existing AWS resources.
+2. Import the existing resources into the Terraform state.
+3. Run `terraform plan` and verify that the result is **No changes**.
+
+### Optional
+
+If time permits, reproduce the same infrastructure in a separate environment using `terraform apply` to verify reproducibility.
+
+## Initial Setup
+
+```bash
+terraform init
+terraform fmt
+terraform validate
+```
+
+## Managed Resources
+
 - VPC
-- Public subnet
+- Public Subnet
 - Internet Gateway
-- Route table
-- Security group
+- Route Table
+- Security Group
 
 ## Safety Notes
+
+- Do not commit `.terraform/`
+- Commit `.terraform.lock.hcl`
 - Do not commit `terraform.tfstate`
 - Do not commit `terraform.tfvars`
 - Do not hardcode AWS credentials
-- Prefer environment variables or a secure AWS profile
-
+- Prefer environment variables or an AWS profile
