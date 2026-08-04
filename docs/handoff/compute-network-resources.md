@@ -7,7 +7,7 @@
 | 항목 | 값 |
 | --- | --- |
 | 프로젝트명 | AWS Infra / SRE 14-Day Project |
-| 작성일 | 2026-07-16 |
+| 작성일 | 2026-08-04 |
 | 작성자 | 강세영 |
 | 담당 파트 | Compute + Network |
 | Region | ap-northeast-2 |
@@ -226,7 +226,7 @@ Outbound 규칙:
 
 특이사항:
 
-- ALB는 아직 생성되지 않았다.
+- ALB Security Group은 Internet-facing ALB `aws-infra-sre-dev-alb`에 연결했다.
 
 ## 7. EC2 Security Group
 
@@ -252,6 +252,7 @@ Inbound 규칙:
 | Protocol | Port | Source | Purpose |
 | --- | --- | --- | --- |
 | TCP | `80` | ALB Security Group `sg-053e06d50216483fe` | ALB에서 EC2로 전달되는 HTTP만 허용 |
+| TCP | `22` | EC2 Instance Connect Endpoint Security Group `sg-03a67f4bd0610147e` | EICE를 통한 Private IPv4 SSH 접속 |
 | TCP | `22` | administrator My IP | 관리자 SSH 접속 |
 
 Outbound 규칙:
@@ -264,14 +265,15 @@ Outbound 규칙:
 
 - EC2 Security Group `sg-03a67f4bd0610147e`가 VPC `vpc-04ac5e34907e1e0e9`에 생성되었음을 확인했다.
 - TCP 80 inbound source가 ALB Security Group `sg-053e06d50216483fe`로 제한됨을 확인했다.
-- TCP 22 inbound source는 생성 당시 현재 관리자 공인 IP로 제한했다.
+- EC2 Instance Connect Endpoint와 EC2가 같은 Security Group `sg-03a67f4bd0610147e`를 사용하며, EICE에서 EC2로 SSH 22 접근이 가능하도록 Security Group 참조 규칙을 추가했다.
+- 기존 관리자 IP 기반 SSH 22 규칙도 존재한다.
 - outbound all traffic이 `0.0.0.0/0` 대상으로 허용됨을 확인했다.
 - Must Tag 적용이 완료되었음을 확인했다.
 
 특이사항:
 
 - EC2 Port 80을 `0.0.0.0/0`에 직접 개방하지 않는 것을 기본 원칙으로 한다.
-- 정확한 SSH CIDR 값은 제공되지 않았으므로 `administrator My IP`로 기록한다.
+- 정확한 관리자 IP CIDR과 Security Group rule ID는 AWS CLI 조회에 실패했으므로 추측하지 않는다.
 
 ## 8. EC2
 
@@ -286,7 +288,7 @@ Outbound 규칙:
 | Subnet CIDR | `10.0.1.0/24` |
 | Availability Zone | `ap-northeast-2a` |
 | Private IPv4 | `10.0.1.93` |
-| Current Public IPv4 | `3.39.252.131` |
+| Current Public IPv4 | 없음 |
 | AMI | Amazon Linux 2023 |
 | Architecture | 64-bit x86 |
 | Instance Type | TBD — AWS Console 확인 필요 |
@@ -305,11 +307,22 @@ Outbound 규칙:
 | Tag: Purpose | `minipep-app` |
 | Must Tag 적용 상태 | 완료 |
 
+EC2 Instance Connect Endpoint:
+
+| 항목 | 값 |
+| --- | --- |
+| Endpoint ID | `eice-077f856f79efd6170` |
+| EICE Security Group | `sg-03a67f4bd0610147e` |
+| SSH User | `ec2-user` |
+| 접속 대상 | Private IPv4 `10.0.1.93` |
+| 접속 결과 | 성공 |
+| Endpoint subnet | AWS Console 확인 필요 |
+
 검증 결과:
 
 - EC2 `i-07d3895c10c0706be`가 Public Subnet A에 생성되었음을 확인했다.
-- Public IPv4 `3.39.252.131`이 할당되었음을 확인했다.
-- Key Pair `aws-infra-sre-dev-ec2-key`를 사용해 SSH 접속에 성공했다.
+- 현재 Public IPv4는 없음을 확인했다.
+- EC2 Instance Connect Endpoint `eice-077f856f79efd6170`를 사용해 Private IPv4 `10.0.1.93` 대상으로 SSH 접속에 성공했다.
 - SSH 사용자 `ec2-user`로 접속했다.
 - Docker 설치가 완료되었다.
 - `docker.service` 상태가 enabled 및 active (running)임을 확인했다.
@@ -318,9 +331,10 @@ Outbound 규칙:
 - 임시 Nginx 컨테이너 `nginx-test`로 EC2 host port 80 연결을 검증했다.
 - `curl -I http://localhost` 결과 `HTTP/1.1 200 OK`와 `Server: nginx/1.31.3`을 확인했다.
 - 검증 후 `nginx-test` 컨테이너를 삭제했다.
-- 현재 EC2 host port 80은 MiniPEP 컨테이너 배포를 위해 비어 있다.
 - MiniPEP FastAPI 배포를 완료했다.
 - Docker Compose로 `minipep` 컨테이너를 실행했으며 Host Port `80`에서 Container Port `8000`으로 연결됨을 확인했다.
+- Docker container name은 `minipep`, Docker image는 `app-minipep`이다.
+- `docker ps`에서 `minipep` 컨테이너가 Up 상태임을 확인했다.
 - `curl -i http://localhost/health` 결과 `HTTP/1.1 200 OK`와 `{"status":"ok","service":"minipep"}` 응답을 확인했다.
 - `curl http://localhost/api/equipment`로 Equipment API 정상 응답을 확인했다.
 - `curl http://localhost/api/jobs`로 Jobs API 정상 응답을 확인했다.
@@ -328,7 +342,7 @@ Outbound 규칙:
 
 특이사항:
 
-- Public IPv4는 Elastic IP가 아니므로 인스턴스 중지 후 재시작 시 변경될 수 있다.
+- 현재 EC2에는 Public IPv4가 없으며, 운영 접속은 EC2 Instance Connect Endpoint를 통한 Private IPv4 SSH 방식으로 검증했다.
 - Nginx는 임시 포트 연결 테스트용이며 최종 아키텍처가 아니다.
 - 임시 검증 컨테이너는 `nginx:alpine` 이미지, container name `nginx-test`, port mapping `80:80`으로 실행했다.
 - 최종 앱은 MiniPEP FastAPI이며 Docker Container Port `8000`으로 실행한다.
@@ -341,23 +355,34 @@ Outbound 규칙:
 | --- | --- |
 | Resource Type | Application Load Balancer |
 | Resource Name | `aws-infra-sre-dev-alb` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
+| Resource ID | AWS Console 확인 필요 |
+| ALB ARN | AWS Console 확인 필요 |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
-| Subnet ID | TBD — Day 3 생성 후 기록 |
-| Security Group ID | TBD — Day 3 생성 후 기록 |
+| Scheme | Internet-facing |
+| IP Address Type | IPv4 |
+| Subnet ID | `subnet-0da0e473f97b614fa`, `subnet-08124f6af7f10cc98` |
+| Security Group ID | `sg-053e06d50216483fe` |
 | Listener Port | `80` |
-| ALB DNS | TBD — Day 3 생성 후 기록 |
+| Listener ARN | AWS Console 확인 필요 |
+| Default Action | Forward to `aws-infra-sre-dev-app-tg` |
+| ALB DNS | `aws-infra-sre-dev-alb-891673525.ap-northeast-2.elb.amazonaws.com` |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
 
 검증 결과:
 
-- ALB는 아직 생성되지 않았다.
+- Internet-facing ALB `aws-infra-sre-dev-alb` 생성을 완료했다.
+- Public Subnet A `subnet-0da0e473f97b614fa`와 Public Subnet B `subnet-08124f6af7f10cc98`에 연결했다.
+- ALB Security Group `sg-053e06d50216483fe`를 연결했다.
+- HTTP 80 Listener를 생성하고 기본 동작을 Target Group `aws-infra-sre-dev-app-tg`로 전달하도록 구성했다.
+- ALB DNS `http://aws-infra-sre-dev-alb-891673525.ap-northeast-2.elb.amazonaws.com/health` 요청에서 HTTP 200과 `{"status":"ok","service":"minipep"}` 응답을 확인했다.
+- `/healty` 오타 경로 요청은 404였지만, 올바른 `/health` 경로 요청은 200으로 성공했다.
+- AWS CLI 자격증명이 없어 정확한 ALB ARN과 Listener ARN은 조회하지 못했다.
 
 특이사항:
 
-- Internet-facing ALB로 구성할 예정이다.
-- ALB는 Public Subnet A와 Public Subnet B를 사용해야 한다.
+- AWS Console에서 생성한 리소스이므로 Terraform으로 중복 생성하면 안 된다.
+- Terraform 반영 여부는 아직 No로 유지한다.
 
 ## 10. Target Group
 
@@ -365,26 +390,45 @@ Outbound 규칙:
 | --- | --- |
 | Resource Type | Target Group |
 | Resource Name | `aws-infra-sre-dev-app-tg` |
-| Resource ID | TBD — Day 3 생성 후 기록 |
-| Target Group ARN | TBD — Day 3 생성 후 기록 |
+| Resource ID | AWS Console 확인 필요 |
+| Target Group ARN | AWS Console 확인 필요 |
+| Target Type | Instance |
+| Protocol | HTTP |
+| Protocol Version | HTTP1 |
 | VPC ID | `vpc-04ac5e34907e1e0e9` |
 | Target Port | `80` |
 | Host Port | `80` |
 | Container Port | `8000` |
 | Health Check Path | `/health` |
 | Health Check Success Code | `200` |
+| Registered Target | `i-07d3895c10c0706be` |
+| Registered Target Count | `1` |
+| Target Health | AWS Console 확인 필요 |
 | Terraform 반영 여부 | No |
-| ManagedBy | `console` 예정 |
+| ManagedBy | `console` |
 
 검증 결과:
 
-- Target Group은 아직 생성되지 않았다.
+- Target Group `aws-infra-sre-dev-app-tg` 생성을 완료했다.
+- Instance target `i-07d3895c10c0706be` 등록을 완료했다.
+- 등록된 target count는 1대이다.
+- Health check path는 `/health`, success code는 `200`으로 구성했다.
+- AWS CLI 자격증명이 없어 정확한 Target Group ARN과 Target Health 상태는 조회하지 못했다.
 
 특이사항:
 
 - ALB Listener Port `80`에서 Target Group Port `80`으로 전달한다.
 - EC2 Host Port `80`은 Docker Container Port `8000`으로 연결한다.
 - 최종 Health Check Path는 `/health`이다.
+- Target Health가 확인되지 않은 경우 healthy라고 단정하지 않는다.
+- AWS Console에서 생성한 리소스이므로 Terraform으로 중복 생성하면 안 된다.
+- Terraform 반영 여부는 아직 No로 유지한다.
+
+## 11. Current Request Flow
+
+```text
+사용자 -> ALB:80 -> Target Group:80 -> EC2 Host:80 -> Docker Container:8000 -> MiniPEP
+```
 
 ## Terraform Variable로 전달할 값
 
@@ -441,6 +485,8 @@ Outbound 규칙:
 | ALB Security Group | `aws-infra-sre-dev-alb-sg` | `alb-traffic-control` | `console` | 완료 |
 | EC2 Security Group | `aws-infra-sre-dev-ec2-sg` | `ec2-traffic-control` | `console` | 완료 |
 | EC2 | `aws-infra-sre-dev-app-ec2` | `minipep-app` | `console` | 완료 |
+| ALB | `aws-infra-sre-dev-alb` | `app-load-balancer` | `console` | 완료 |
+| Target Group | `aws-infra-sre-dev-app-tg` | `app-target-group` | `console` | 완료 |
 
 ## 전체 검증 요약
 
@@ -449,6 +495,11 @@ Outbound 규칙:
 - Public Subnet B가 `10.0.2.0/24`이며 `ap-northeast-2c`에 있음을 확인했다.
 - Public Subnet A와 Public Subnet B가 연결된 Route Table에 `0.0.0.0/0 -> igw-06e83aa7e2a1cd757` 경로가 있음을 확인했다.
 - ALB Security Group `sg-053e06d50216483fe`와 EC2 Security Group `sg-03a67f4bd0610147e`가 생성되었음을 확인했다.
-- EC2 `i-07d3895c10c0706be`가 Public Subnet A에 생성되었고 현재 Public IPv4 `3.39.252.131`이 할당되었음을 확인했다.
-- SSH, Docker, 임시 Nginx host port 80 검증을 완료했다.
-- ALB와 Target Group은 아직 생성되지 않았다.
+- EC2 `i-07d3895c10c0706be`가 Public Subnet A에 생성되었고 현재 Public IPv4는 없음을 확인했다.
+- EC2 Instance Connect Endpoint `eice-077f856f79efd6170`를 통한 Private IPv4 SSH 접속을 완료했다.
+- Docker MiniPEP 컨테이너 `minipep`가 Host Port `80`에서 Container Port `8000`으로 Up 상태임을 확인했다.
+- EC2 localhost `/health` 요청에서 HTTP 200과 `{"status":"ok","service":"minipep"}` 응답을 확인했다.
+- Target Group `aws-infra-sre-dev-app-tg`를 생성하고 EC2 target `i-07d3895c10c0706be` 1대 등록을 완료했다.
+- Internet-facing ALB `aws-infra-sre-dev-alb`와 HTTP 80 Listener를 생성하고 Target Group으로 전달하도록 구성했다.
+- ALB DNS `/health` 요청에서 HTTP 200과 `{"status":"ok","service":"minipep"}` 응답을 확인했다.
+- 현재 요청 흐름은 `사용자 -> ALB:80 -> Target Group:80 -> EC2 Host:80 -> Docker Container:8000 -> MiniPEP`이다.
