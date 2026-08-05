@@ -1,0 +1,196 @@
+=== ALB Main Page ===
+HTTP/1.1 200 OK
+Date: Wed, 05 Aug 2026 00:56:26 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 4691
+Connection: keep-alive
+server: uvicorn
+
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MiniPEP Dashboard</title>
+        <style>
+          :root {
+            --bg: #f4f6f8;
+            --surface: #ffffff;
+            --text: #1f2933;
+            --muted: #5b6776;
+            --line: #d9e2ec;
+            --accent: #0f766e;
+            --accent-soft: #ccfbf1;
+          }
+          * { box-sizing: border-box; }
+          body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+          }
+          header {
+            background: #17202a;
+            color: #fff;
+            padding: 24px;
+          }
+          main {
+            width: min(1120px, calc(100% - 32px));
+            margin: 24px auto 48px;
+          }
+          h1, h2 { margin: 0; }
+          h1 { font-size: 2rem; }
+          h2 { font-size: 1.1rem; margin-bottom: 12px; }
+          p { color: var(--muted); line-height: 1.5; }
+          .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+          }
+          .metric, section {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+          }
+          .metric { padding: 16px; }
+          .metric strong { display: block; font-size: 1.8rem; }
+          section { padding: 16px; margin-top: 16px; overflow-x: auto; }
+          table { width: 100%; border-collapse: collapse; min-width: 620px; }
+          th, td {
+            border-bottom: 1px solid var(--line);
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 0.95rem;
+          }
+          th { color: var(--muted); font-weight: 700; }
+          .links a {
+            display: inline-block;
+            margin-right: 12px;
+            color: var(--accent);
+            font-weight: 700;
+          }
+          .status {
+            background: var(--accent-soft);
+            color: #115e59;
+            border-radius: 999px;
+            padding: 3px 8px;
+            font-size: 0.85rem;
+          }
+        </style>
+      </head>
+      <body>
+        <header>
+          <h1>MiniPEP</h1>
+          <p>FastAPI demo app for EC2 Docker deployment behind an AWS ALB.</p>
+        </header>
+        <main>
+          <div class="summary">
+            <div class="metric"><span>Equipment</span><strong>3</strong></div>
+            <div class="metric"><span>Jobs</span><strong>3</strong></div>
+            <div class="metric"><span>Health</span><strong>OK</strong></div>
+          </div>
+          <p class="links">
+            <a href="/health">/health</a>
+            <a href="/api/equipment">/api/equipment</a>
+            <a href="/api/jobs">/api/jobs</a>
+            <a href="/docs">OpenAPI docs</a>
+          </p>
+          <section>
+            <h2>Equipment</h2>
+            <table>
+              <thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Location</th><th>Status</th></tr></thead>
+              <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mixer-01</td>
+          <td>Mixer</td>
+          <td>Line A</td>
+          <td><span class="status">running</span></td>
+        </tr>
+        
+
+        <tr>
+          <td>2</td>
+          <td>Press-02</td>
+          <td>Hydraulic Press</td>
+          <td>Line B</td>
+          <td><span class="status">available</span></td>
+        </tr>
+        
+
+        <tr>
+          <td>3</td>
+          <td>Conveyor-03</td>
+          <td>Conveyor</td>
+          <td>Packaging</td>
+          <td><span class="status">maintenance</span></td>
+        </tr>
+        </tbody>
+            </table>
+          </section>
+          <section>
+            <h2>Recent Jobs</h2>
+            <table>
+              <thead><tr><th>ID</th><th>Title</th><th>Equipment</th><th>Status</th><th>Priority</th></tr></thead>
+              <tbody>
+        <tr>
+          <td>3</td>
+          <td>Replace belt sensor</td>
+          <td>Conveyor-03</td>
+          <td>completed</td>
+          <td>urgent</td>
+        </tr>
+        
+
+        <tr>
+          <td>2</td>
+          <td>Inspect pressure gauge</td>
+          <td>Press-02</td>
+          <td>queued</td>
+          <td>normal</td>
+        </tr>
+        
+
+        <tr>
+          <td>1</td>
+          <td>Morning production run</td>
+          <td>Mixer-01</td>
+          <td>in_progress</td>
+          <td>high</td>
+        </tr>
+        </tbody>
+            </table>
+          </section>
+        </main>
+      </body>
+    </html>
+    
+=== ALB Health ===
+HTTP/1.1 200 OK
+Date: Wed, 05 Aug 2026 00:56:26 GMT
+Content-Type: application/json
+Content-Length: 35
+Connection: keep-alive
+server: uvicorn
+
+{"status":"ok","service":"minipep"}
+=== ALB Equipment API ===
+HTTP/1.1 200 OK
+Date: Wed, 05 Aug 2026 00:56:26 GMT
+Content-Type: application/json
+Content-Length: 479
+Connection: keep-alive
+server: uvicorn
+
+[{"name":"Mixer-01","type":"Mixer","location":"Line A","status":"running","id":1,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47"},{"name":"Press-02","type":"Hydraulic Press","location":"Line B","status":"available","id":2,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47"},{"name":"Conveyor-03","type":"Conveyor","location":"Packaging","status":"maintenance","id":3,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47"}]
+=== ALB Jobs API ===
+HTTP/1.1 200 OK
+Date: Wed, 05 Aug 2026 00:56:26 GMT
+Content-Type: application/json
+Content-Length: 708
+Connection: keep-alive
+server: uvicorn
+
+[{"equipment_id":3,"title":"Replace belt sensor","description":"Maintenance ticket from packaging line","status":"completed","priority":"urgent","id":3,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47","completed_at":"2026-07-21 16:55:47"},{"equipment_id":2,"title":"Inspect pressure gauge","description":"Routine pre-shift check","status":"queued","priority":"normal","id":2,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47","completed_at":null},{"equipment_id":1,"title":"Morning production run","description":"Batch PEP-1001","status":"in_progress","priority":"high","id":1,"created_at":"2026-07-21 16:55:47","updated_at":"2026-07-21 16:55:47","completed_at":null}]
