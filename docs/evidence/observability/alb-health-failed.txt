@@ -1,0 +1,17 @@
+curl -i "http://${ALB_DNS}/health"
+date
+curl: (7) Failed to connect to localhost port 80 after 0 ms: Could not connect to server
+HTTP/1.1 502 Bad Gateway
+Server: awselb/2.0
+Date: Wed, 05 Aug 2026 01:09:59 GMT
+Content-Type: text/html
+Content-Length: 122
+Connection: keep-alive
+
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
+Wed Aug  5 01:09:59 UTC 2026
