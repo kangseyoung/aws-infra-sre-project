@@ -164,15 +164,22 @@ terraform.tfstate.*
 
 다음 항목은 MiniPEP 배포 및 ALB/Target Group 구성 이후 검수한다.
 
-- [ ] `EC2 Host 80 → Docker Container 8000` 포트 매핑 확인
-- [ ] EC2 내부 `curl -i http://localhost/health`의 `HTTP 200` 확인
-- [ ] ALB DNS의 `/health` 응답 확인
-- [ ] Target Group의 Target Health가 `Healthy`인지 확인
-- [ ] Docker / MiniPEP Application Log 확인
-- [ ] `.env`, Access Key 및 SQLite DB의 Git 미포함 확인
-- [ ] 공통 장애 대응 Runbook 작성
-- [ ] 장애 1개 재현 및 복구 결과 기록
-
+- [x] `EC2 Host 80 → Docker Container 8000` 포트 매핑 확인  
+  근거: `docs/checklists/observability-checklist.md`, `docs/runbook/minipep_access_failure.md`
+- [x] EC2 내부 `curl -i http://localhost/health`의 `HTTP 200` 확인  
+  근거: `docs/checklists/observability-checklist.md`, `docs/evidence/observability/ec2-internal-api-result.txt`
+- [x] ALB DNS의 `/health` 응답 확인  
+  근거: `docs/checklists/observability-checklist.md`, `docs/evidence/observability/alb-external-api-result.txt`, `docs/evidence/observability/alb-health-recovered.txt`
+- [x] Target Group의 Target Health가 `Healthy`인지 확인  
+  근거: `docs/checklists/observability-checklist.md`, `docs/evidence/observability/targetgroup-health-recovered.png`
+- [x] Docker / MiniPEP Application Log 확인  
+  근거: `docs/checklists/observability-checklist.md`, `docs/evidence/observability/docker-health-result.txt`
+- [x] `.env`, Access Key 및 SQLite DB의 Git 미포함 확인  
+  근거: tracked file scan 결과 `.env`, `.pem`, `terraform.tfstate`, `*.tfvars`, `*.db`, `*.sqlite`, `*.sqlite3`, AWS Access Key / Secret Key, private key pattern 미검출
+- [x] 공통 장애 대응 Runbook 작성  
+  근거: `docs/runbook/minipep_access_failure.md`
+- [x] 장애 1개 재현 및 복구 결과 기록  
+  근거: `docs/checklists/observability-checklist.md`, `docs/runbook/minipep_access_failure.md`, `docs/evidence/observability/alb-health-failed.txt`, `docs/evidence/observability/alb-health-recovered.txt`, `docs/evidence/observability/targetgroup-health-failed.png`, `docs/evidence/observability/targetgroup-health-recovered.png`
 ---
 
 ## 8. 최종 결론
