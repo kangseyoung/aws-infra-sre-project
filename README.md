@@ -20,7 +20,7 @@
 ## Target Architecture
 
 ```text
-사용자 -> ALB -> EC2 -> Docker / Nginx -> CloudWatch
+사용자 -> Internet-facing ALB -> Target Group -> EC2:80 -> Docker -> MiniPEP:8000
 ```
 
 각 요소의 역할은 다음과 같습니다.
@@ -28,10 +28,14 @@
 | Component | Role |
 | --- | --- |
 | 사용자 | 브라우저에서 서비스에 접속하는 사람 |
-| ALB | 사용자 요청을 받아 EC2로 전달하는 Load Balancer |
+| Internet-facing ALB | 사용자 HTTP 요청을 받아 Target Group으로 전달하는 Load Balancer |
+| Target Group | ALB 요청을 등록된 EC2 target의 port 80으로 전달하는 대상 그룹 |
 | EC2 | 실제 서버가 실행되는 AWS 가상 서버 |
-| Docker / Nginx | EC2 안에서 웹 서버를 실행하는 구성 |
-| CloudWatch | 서버 상태, 로그, 지표를 확인하는 AWS 모니터링 서비스 |
+| Docker | EC2 안에서 MiniPEP 애플리케이션 컨테이너를 실행하는 구성 |
+| MiniPEP | 최종 FastAPI 앱이며 container port 8000에서 실행 |
+| CloudWatch | 서버 상태, 로그, 지표를 확인할 AWS 모니터링 서비스. 아직 통합 검증 전 |
+
+2026-08-04 기준 Compute + Network 핵심 경로는 ALB DNS `/health` 요청이 MiniPEP까지 도달해 HTTP 200을 반환하는 수준까지 완료했습니다. Nginx는 초기 EC2 port 80 연결 검증용으로만 사용했고, 최종 앱은 Docker로 실행되는 MiniPEP입니다.
 
 ## Team Roles
 

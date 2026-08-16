@@ -1,0 +1,12 @@
+=== Docker Container Status ===
+CONTAINER ID   IMAGE         COMMAND                  CREATED       STATUS       PORTS                                   NAMES
+561859c4ee35   app-minipep   "uvicorn minipep.mai…"   2 weeks ago   Up 2 weeks   0.0.0.0:80->8000/tcp, :::80->8000/tcp   minipep
+
+=== MiniPEP Health Check ===
+HTTP/1.1 200 OK
+date: Wed, 05 Aug 2026 00:52:05 GMT
+server: uvicorn
+content-length: 35
+content-type: application/json
+
+{"status":"ok","service":"minipep"}

@@ -1,0 +1,17 @@
+curl -i "http://${ALB_DNS}/health"
+date
+no configuration file provided: not found
+HTTP/1.1 200 OK
+date: Wed, 05 Aug 2026 01:15:23 GMT
+server: uvicorn
+content-length: 35
+content-type: application/json
+
+{"status":"ok","service":"minipep"}HTTP/1.1 200 OK
+Date: Wed, 05 Aug 2026 01:15:23 GMT
+Content-Type: application/json
+Content-Length: 35
+Connection: keep-alive
+server: uvicorn
+
+{"status":"ok","service":"minipep"}Wed Aug  5 01:15:23 UTC 2026
