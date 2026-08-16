@@ -180,6 +180,7 @@ terraform.tfstate.*
   근거: `docs/runbook/minipep_access_failure.md`
 - [x] 장애 1개 재현 및 복구 결과 기록  
   근거: `docs/checklists/observability-checklist.md`, `docs/runbook/minipep_access_failure.md`, `docs/evidence/observability/alb-health-failed.txt`, `docs/evidence/observability/alb-health-recovered.txt`, `docs/evidence/observability/targetgroup-health-failed.png`, `docs/evidence/observability/targetgroup-health-recovered.png`
+
 ---
 
 ## 8. 최종 결론
